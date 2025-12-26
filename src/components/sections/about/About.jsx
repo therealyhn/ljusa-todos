@@ -27,9 +27,9 @@ const About = () => {
                             <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-sm overflow-hidden border border-white/5">
                                 {data.imageFront && (
                                     <img
-                                        src={urlFor(data.imageFront).width(800).height(1200).url()}
+                                        src={urlFor(data.imageFront).width(1200).height(1600).url()}
                                         alt="LJUSA x TODOS"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-contain"
                                     />
                                 )}
                             </div>
@@ -38,9 +38,9 @@ const About = () => {
                             <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-sm overflow-hidden border border-white/5">
                                 {data.imageBack && (
                                     <img
-                                        src={urlFor(data.imageBack).width(800).height(1200).url()}
+                                        src={urlFor(data.imageBack).width(1200).height(1600).url()}
                                         alt="LJUSA x TODOS - Alternate"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-contain"
                                     />
                                 )}
                             </div>
