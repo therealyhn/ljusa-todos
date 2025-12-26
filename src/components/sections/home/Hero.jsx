@@ -1,6 +1,20 @@
+import { useEffect, useState } from 'react';
 import Container from '../../ui/Container';
+import { sanityClient } from '../../../lib/sanityClient';
 
 const Hero = () => {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        sanityClient.fetch(`*[_type == "siteSettings"][0]{
+            heroTitle,
+            heroSubtitle,
+            heroDescription
+        }`).then(setData).catch(console.error);
+    }, []);
+
+    if (!data) return null; // Or a loading spinner
+
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
 
@@ -9,14 +23,12 @@ const Hero = () => {
 
             <Container className="relative z-10 text-center">
                 <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-6">
-                    <span className="block text-white">ELEVATE</span>
-                    <span className="block text-secondary">THE VIBE</span>
+                    <span className="block text-white">{data.heroTitle}</span>
+                    <span className="block text-secondary">{data.heroSubtitle}</span>
                 </h1>
 
-                <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary/80 mb-10 leading-relaxed">
-                    Premium DJ services for exclusive events, weddings, and parties.
-                    <br className="hidden md:block" />
-                    Where sound meets sophistication.
+                <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary/80 mb-10 leading-relaxed whitespace-pre-line">
+                    {data.heroDescription}
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
