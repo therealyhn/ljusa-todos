@@ -23,19 +23,24 @@ const Hero = () => {
 
             <Container className="relative z-10 text-center">
                 <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-6 leading-[0.9] md:leading-tight">
-                    <span className="block text-white">{data.heroTitle}</span>
-                    <span className="block text-secondary">{data.heroSubtitle}</span>
+                    <span className="block text-white animate__animated animate__fadeInLeft">{data.heroTitle}</span>
+                    <span className="block text-secondary animate__animated animate__fadeInRight">{data.heroSubtitle}</span>
                 </h1>
 
-                <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary/80 mb-10 leading-relaxed whitespace-pre-line">
+                <p className="max-w-2xl mx-auto text-lg md:text-xl text-secondary/80 mb-10 leading-relaxed whitespace-pre-line 
+                animate__animated animate__fadeInUp animate__delay-1s">
                     {data.heroDescription}
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <button className="w-full md:w-auto px-8 py-4 bg-white text-black font-bold uppercase tracking-wide rounded-sm hover:scale-105 transition-transform duration-300">
+                    <button className="w-full md:w-auto px-8 py-4 bg-white text-black font-bold uppercase tracking-wide 
+                    rounded-sm hover:bg-white/80 transition duration-300
+                    animate__animated animate__fadeInLeft animate__delay-1s">
                         Check Availability
                     </button>
-                    <button className="w-full md:w-auto px-8 py-4 border border-white/10 text-white font-medium uppercase tracking-wide rounded-sm hover:bg-white/5 transition-colors">
+                    <button className="w-full md:w-auto px-8 py-4 border border-white/10 text-white font-medium uppercase 
+                    tracking-wide rounded-sm hover:bg-white/5 transition- transition duration-300
+                    animate__animated animate__fadeInRight animate__delay-1s">
                         Listen to Mixes
                     </button>
                 </div>

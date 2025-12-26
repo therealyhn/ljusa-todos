@@ -3,9 +3,9 @@ import BurgerMenu from '../ui/BurgerMenu';
 
 const Navbar = () => {
     return (
-        <nav className="fixed top-0 w-full z-50 bg-background backdrop-blur-md border-b border-white/5">
+        <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
             <Container>
-                <div className="flex items-center justify-between h-20">
+                <div className="flex items-center justify-between h-20 animate__animated animate__fadeIn animate__slower">
                     {/* Logo */}
                     <a href="#" className="text-2xl font-heading font-bold tracking-tighter text-white z-50 relative">
                         LJUSA <span className="text-accent-blue">x</span> TODOS
@@ -23,6 +23,7 @@ const Navbar = () => {
                     {/* Mobile Nav Component */}
                     <BurgerMenu />
                 </div>
+
             </Container>
 
         </nav>
