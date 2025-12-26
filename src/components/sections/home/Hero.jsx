@@ -22,7 +22,7 @@ const Hero = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-blue/20 rounded-full blur-[120px] pointer-events-none" />
 
             <Container className="relative z-10 text-center">
-                <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-6">
+                <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-6 leading-[0.9] md:leading-tight">
                     <span className="block text-white">{data.heroTitle}</span>
                     <span className="block text-secondary">{data.heroSubtitle}</span>
                 </h1>
