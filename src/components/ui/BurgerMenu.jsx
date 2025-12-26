@@ -64,7 +64,7 @@ const BurgerMenu = () => {
                                 href={link.href}
                                 onClick={toggleMenu}
                                 style={{ animationDelay: isOpen ? `${i * 0.1}s` : '0s' }}
-                                className={`text-4xl font-heading font-bold text-white hover:text-secondary transition-colors uppercase tracking-tight animate__animated ${isOpen ? 'animate__fadeInLeft' : 'animate__fadeOutLeft animate__faster'}`}
+                                className={`relative inline-flex w-fit text-4xl font-heading font-bold text-white hover:text-secondary transition-colors uppercase tracking-tight animate__animated after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-white/70 after:transition-all after:duration-300 after:ease-out hover:after:w-full ${isOpen ? 'animate__fadeInLeft' : 'animate__fadeOutLeft animate__faster'}`}
                             >
                                 {link.name}
                             </a>
@@ -80,7 +80,7 @@ const BurgerMenu = () => {
                                 className={`animate__animated ${isOpen ? 'animate__fadeInUp' : 'animate__fadeOutDown animate__faster'}`}
                                 style={{ animationDelay: isOpen ? `${0.6 + (i * 0.1)}s` : '0s' }}
                             >
-                                <p className="text-xs uppercase tracking-widest text-secondary/70 mb-3">{brand}</p>
+                                <p className="text-lg uppercase tracking-widest text-secondary/70 mb-3">{brand}</p>
                                 <div className="flex flex-col gap-3">
                                     <a href="#" className="text-sm text-white/80 hover:text-white transition-colors">Instagram</a>
                                     <a href="#" className="text-sm text-white/80 hover:text-white transition-colors">SoundCloud</a>

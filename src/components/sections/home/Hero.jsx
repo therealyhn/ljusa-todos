@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Container from '../../ui/Container';
 import { sanityClient } from '../../../lib/sanityClient';
+import Button from '../../ui/Button';
 
 const Hero = () => {
     const [data, setData] = useState(null);
@@ -33,16 +34,12 @@ const Hero = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <button className="w-full md:w-auto px-8 py-4 bg-white text-black font-bold uppercase tracking-wide 
-                    rounded-sm hover:bg-white/80 transition duration-300
-                    animate__animated animate__fadeInLeft animate__delay-1s">
-                        Check Availability
-                    </button>
-                    <button className="w-full md:w-auto px-8 py-4 border border-white/10 text-white font-medium uppercase 
-                    tracking-wide rounded-sm hover:bg-white/5 transition- transition duration-300
-                    animate__animated animate__fadeInRight animate__delay-1s">
+                    <Button href="#" variant="outline" size="md" className="animate__animated animate__fadeInLeft animate__delay-1s">
+                        Check Mashups
+                    </Button>
+                    <Button href="#" variant="secondary" size="md" className="animate__animated animate__fadeInRight animate__delay-1s">
                         Listen to Mixes
-                    </button>
+                    </Button>
                 </div>
             </Container>
         </section>

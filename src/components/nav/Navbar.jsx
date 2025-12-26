@@ -1,5 +1,6 @@
 import Container from '../ui/Container';
 import BurgerMenu from '../ui/BurgerMenu';
+import Button from '../ui/Button';
 
 const Navbar = () => {
     return (
@@ -12,13 +13,13 @@ const Navbar = () => {
                     </a>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center space-x-8 text-sm uppercase font-medium text-secondary">
+                    <div className="hidden md:flex items-center space-x-8 text-md uppercase font-medium text-secondary">
                         <a href="#about" className="hover:text-primary transition-colors">About</a>
                         <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
                         <a href="#mashups" className="hover:text-primary transition-colors">Mashups</a>
-                        <button className="bg-white text-black px-6 py-2.5 rounded-sm font-semibold hover:bg-gray-200 uppercase transition-colors">
+                        <Button variant="primary" size="md" className="hover:bg-gray-200 uppercase transition-colors">
                             Book Now
-                        </button>
+                        </Button>
                     </div>
                     {/* Mobile Nav Component */}
                     <BurgerMenu />
