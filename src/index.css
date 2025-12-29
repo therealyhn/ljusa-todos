@@ -25,12 +25,17 @@ html
 
 .swiper-pagination-bullet
 {
-    background: rgba(255, 255, 255, 0.35) !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    transition: all 0.3s ease;
 }
 
 .swiper-pagination-bullet-active
 {
-    background: #ffffff;
+    background: #ffffff !important;
+    transform: scale(1.2);
 }
 
 .gallery-swiper .swiper-button-prev,

@@ -94,17 +94,19 @@ export default function Gallery() {
     return (
         <section id="gallery" className="py-20 md:py-28 bg-background">
             <Container>
-                <div className="flex flex-col items-center text-center">
-                    <h2 className="text-5xl md:text-6xl font-heading font-bold tracking-tighter text-white">Gallery</h2>
-                    <p className="mt-4 max-w-2xl text-secondary">
-                        Explore curated categories and open each one for the full set.
+                <div className="text-center mb-16">
+                    <h2 className="text-5xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90">
+                        Gallery
+                    </h2>
+                    <div className="h-1 w-20 bg-white/20 mx-auto mt-6 mb-6"></div>
+                    <p className="max-w-xl mx-auto text-secondary text-sm uppercase tracking-widest">
+                        Exclusive photos & videos from the party.
                     </p>
                 </div>
 
                 <Swiper
-                    modules={[Navigation, Pagination]}
+                    modules={[Pagination]}
                     spaceBetween={24}
-                    navigation
                     pagination={{ clickable: true }}
                     breakpoints={{
                         0: { slidesPerView: 1 },

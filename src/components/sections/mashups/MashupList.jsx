@@ -3,43 +3,50 @@ import Button from '../../ui/Button';
 export default function MashupList({ tracks, currentIndex, onSelect }) {
     if (!tracks?.length) {
         return (
-            <div className="bg-background border border-white/5 rounded-sm p-8 text-secondary">
-                No mashups available yet.
+            <div className="text-secondary/50 text-center py-12 uppercase tracking-widest text-sm">
+                No tracks loaded
             </div>
         );
     }
 
     return (
-        <div className="bg-background border border-white/5 rounded-sm overflow-hidden">
-            <div className="max-h-[70vh] overflow-y-auto">
+        <div className="h-full flex flex-col">
+            <h3 className="text-white/40 text-xs uppercase tracking-[0.2em] mb-6 pl-2">Up Next</h3>
+            <div className="max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                 {tracks.map((track, index) => {
                     const isActive = index === currentIndex;
                     return (
-                        <Button
+                        <div
                             key={track.id}
-                            variant="ghost"
-                            size="sm"
+                            className={`group flex items-center justify-between py-4 px-2 border-b border-white/5 cursor-pointer transition-all duration-300 ${isActive ? 'bg-white/5 pl-4' : 'hover:pl-4 hover:bg-white/[0.02]'}`}
                             onClick={() => onSelect(index)}
-                            className={`w-full justify-between px-5 py-4 text-left normal-case tracking-normal hover:tracking-normal ${isActive
-                                ? 'bg-white/5 text-white'
-                                : 'text-secondary hover:text-white hover:bg-white/5'
-                                }`}
                         >
-                            <span className="truncate uppercase">{track.title} - {track.artist}</span>
-                            <div className="flex items-center gap-3">
-                                {track.tags?.[0] && (
-                                    <span className="text-[10px] uppercase tracking-widest text-secondary/80 border border-white/10 px-2 py-1">
-                                        {track.tags[0]}
+                            <div className="flex items-center gap-4 overflow-hidden">
+                                <span className={`text-xs font-mono w-6 ${isActive ? 'text-white' : 'text-white/20'}`}>
+                                    {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <div className="flex flex-col min-w-0">
+                                    <span className={`text-sm md:text-base font-medium uppercase tracking-wide truncate transition-colors ${isActive ? 'text-white' : 'text-secondary group-hover:text-white'}`}>
+                                        {track.title}
                                     </span>
-                                )}
-                                {track.tags?.[1] && (
-                                    <span className="text-[10px] uppercase tracking-widest text-secondary/80 border border-white/10 px-2 py-1">
-                                        {track.tags[1]}
+                                    <span className="text-[10px] md:text-xs text-secondary/60 uppercase tracking-wider truncate">
+                                        {track.artist}
                                     </span>
-                                )}
-
+                                </div>
                             </div>
-                        </Button>
+
+                            {/* Tags or Duration */}
+                            <div className="hidden md:flex items-center gap-2">
+                                {track.tags?.slice(0, 2).map((tag) => (
+                                    <span key={tag} className="text-[9px] uppercase tracking-widest text-secondary/40 border border-white/5 px-1.5 py-0.5 whitespace-nowrap">
+                                        {tag}
+                                    </span>
+                                ))}
+                                {isActive && (
+                                    <div className="w-2 h-2 rounded-full bg-white animate-pulse ml-2" />
+                                )}
+                            </div>
+                        </div>
                     );
                 })}
             </div>

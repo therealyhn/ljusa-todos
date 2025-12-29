@@ -10,8 +10,9 @@ function App() {
       <Navbar />
       <Hero />
       <About />
-      <Gallery />
       <Mashups />
+      <Gallery />
+
       {/* Placeholder for future sections to allow scrolling */}
       <div className="h-screen"></div>
     </main>

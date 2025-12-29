@@ -7,29 +7,32 @@ export default function CategoryCard({ category, onClick, className = "" }) {
             <button
                 type="button"
                 onClick={onClick}
-                className="group block w-full overflow-hidden rounded-sm bg-surface text-left border border-white/5"
+                className="group relative block w-full h-[500px] overflow-hidden bg-black text-left"
             >
-                <div className="relative">
-                    <img
-                        src={imageUrl}
-                        alt={category.alt || category.title}
-                        className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
-                        loading="lazy"
-                    />
-                </div>
+                {/* Image Background */}
+                <img
+                    src={imageUrl}
+                    alt={category.alt || category.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-60"
+                    loading="lazy"
+                />
 
-                <div className="p-5">
-                    <span className="block text-xs font-semibold uppercase tracking-[0.35em] text-secondary mb-2">
-                        Category
-                    </span>
-                    <h3 className="text-lg font-heading font-semibold text-white">
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-90 transition-opacity duration-500" />
+
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 w-full p-8 translate-y-2 transition-transform duration-500 group-hover:translate-y-0">
+                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-white uppercase tracking-tighter shadow-black drop-shadow-lg">
                         {category.title}
                     </h3>
                     {category.description && (
-                        <p className="mt-2 text-xs text-secondary/70 line-clamp-2">
+                        <p className="mt-4 max-w-sm text-sm text-secondary/80 line-clamp-2 opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100">
                             {category.description}
                         </p>
                     )}
+
+                    {/* Decorative Line */}
+                    <div className="mt-6 h-px w-0 bg-white/30 transition-all duration-700 group-hover:w-full" />
                 </div>
             </button>
         </li>

@@ -74,20 +74,22 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
     }
 
     return (
-        <div className="bg-background border border-white/5 rounded-sm p-8">
-            <div className="flex flex-col gap-6">
-                <div className="flex flex-col gap-2">
-                    <p className="text-xs uppercase tracking-[0.3em] text-secondary">Now Playing</p>
-                    <h3 className="text-2xl md:text-3xl font-heading font-bold text-white">
+        <div className="relative">
+            {/* Current Track Info */}
+            <div className="flex flex-col gap-6 text-center mb-10">
+                <div className="flex flex-col gap-3">
+                    <p className="text-[10px] uppercase tracking-[0.4em] text-accent-blue animate-pulse">Now Playing</p>
+                    <h3 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase leading-none tracking-tight">
                         {track.title}
                     </h3>
-                    <p className="text-sm text-secondary">{track.artist}</p>
+                    <p className="text-sm md:text-base text-secondary/80 uppercase tracking-widest">{track.artist}</p>
+
                     {track.tags?.length > 0 && (
-                        <div className="flex flex-wrap gap-2 pt-2">
+                        <div className="flex flex-wrap justify-center gap-2 pt-2 opacity-50">
                             {track.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="text-[10px] uppercase tracking-widest text-secondary border border-white/10 px-2 py-1"
+                                    className="text-[9px] uppercase tracking-widest text-secondary border border-white/10 px-2 py-1"
                                 >
                                     {tag}
                                 </span>
@@ -96,48 +98,67 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                     )}
                 </div>
 
-                <div className="flex items-center gap-4">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        className="px-3 py-3 rounded-full normal-case tracking-normal hover:tracking-normal"
+                {/* CONTROLS */}
+                <div className="flex items-center justify-center gap-8 py-4">
+                    <button
+                        className="text-white/40 hover:text-white transition-colors hover:scale-110 active:scale-95 duration-200"
                         onClick={onPrev}
                         aria-label="Previous"
                     >
-                        <span className="text-lg">{'<'}</span>
-                    </Button>
-                    <Button
-                        variant="primary"
-                        size="sm"
-                        className="w-12 h-12 p-0 rounded-full normal-case tracking-normal hover:tracking-normal"
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8">
+                            <path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z" />
+                        </svg>
+                    </button>
+
+                    <button
+                        className="group relative flex items-center justify-center w-20 h-20 bg-white rounded-full text-black hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
                         onClick={togglePlay}
                         disabled={!track.src}
                         aria-label={isPlaying ? 'Pause' : 'Play'}
                     >
-                        {isPlaying ? 'II' : '>'}
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        className="px-3 py-3 rounded-full normal-case tracking-normal hover:tracking-normal"
+                        {isPlaying ? (
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8">
+                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                            </svg>
+                        ) : (
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8 ml-1">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        )}
+                    </button>
+
+                    <button
+                        className="text-white/40 hover:text-white transition-colors hover:scale-110 active:scale-95 duration-200"
                         onClick={onNext}
                         aria-label="Next"
                     >
-                        <span className="text-lg">{'>'}</span>
-                    </Button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8">
+                            <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
+                        </svg>
+                    </button>
                 </div>
 
-                <div>
+                {/* SEEK BAR */}
+                <div className="px-4 md:px-12">
                     <div
-                        className="relative h-2 w-full rounded-full bg-white/10 cursor-pointer"
+                        className="relative h-1 w-full rounded-sm bg-white/10 cursor-pointer group py-1" // increased trigger area
                         onClick={handleSeek}
                     >
+                        {/* Actual Visible Line */}
+                        <div className="absolute top-1/2 -translate-y-1/2 w-full h-0.5 bg-white/10 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-white transition-all duration-100"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
+
+                        {/* Thumb */}
                         <div
-                            className="absolute left-0 top-0 h-2 rounded-full bg-white"
-                            style={{ width: `${progress}%` }}
+                            className="absolute top-1/2 -translate-y-1/2 h-3 w-3 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity"
+                            style={{ left: `${progress}%` }}
                         />
                     </div>
-                    <div className="mt-2 flex justify-between text-xs text-secondary">
+                    <div className="mt-2 flex justify-between text-[10px] font-mono tracking-widest text-secondary/40">
                         <span>{formatTime(currentTime)}</span>
                         <span>{formatTime(duration)}</span>
                     </div>

@@ -60,28 +60,37 @@ export default function Mashups() {
     };
 
     return (
-        <section id="mashups" className="min-h-screen bg-surface py-24">
-            <Container>
-                <div className="text-center">
-                    <h2 className="text-5xl md:text-6xl font-heading font-bold tracking-tighter text-white">
+        <section id="mashups" className="min-h-screen bg-black relative py-24 overflow-hidden">
+
+            {/* Ambient Background */}
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
+
+            <Container className="relative z-10">
+                <div className="text-center mb-16">
+                    <h2 className="text-5xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90">
                         Mashups
                     </h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-secondary">
-                        A curated library of custom edits and DJ mashups.
+                    <div className="h-1 w-20 bg-white/20 mx-auto mt-6 mb-6"></div>
+                    <p className="max-w-xl mx-auto text-secondary text-sm uppercase tracking-widest">
+                        Exclusive edits & bootlegs for the dancefloor.
                     </p>
                 </div>
 
-                <div className="mt-12 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-                    <MashupPlayer
-                        track={currentTrack}
-                        onNext={handleNext}
-                        onPrev={handlePrev}
-                    />
-                    <MashupList
-                        tracks={mashups}
-                        currentIndex={currentIndex}
-                        onSelect={setCurrentIndex}
-                    />
+                <div className="grid gap-12 lg:grid-cols-[1fr_1fr] items-start">
+                    <div className="top-24 sticky">
+                        <MashupPlayer
+                            track={currentTrack}
+                            onNext={handleNext}
+                            onPrev={handlePrev}
+                        />
+                    </div>
+                    <div className="pt-4 px-4 md:px-0">
+                        <MashupList
+                            tracks={mashups}
+                            currentIndex={currentIndex}
+                            onSelect={setCurrentIndex}
+                        />
+                    </div>
                 </div>
             </Container>
         </section>
