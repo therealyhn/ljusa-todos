@@ -5,7 +5,7 @@ export default {
     fields: [
         {
             name: 'title',
-            title: 'Title',
+            title: 'Naslov Kategorije',
             type: 'string',
         },
         {
@@ -13,24 +13,26 @@ export default {
             title: 'Slug',
             type: 'slug',
             options: { source: 'title', maxLength: 96 },
+            description: 'Koristi se za SEO',
         },
         {
             name: 'order',
-            title: 'Order',
+            title: 'Redosled',
             type: 'number',
-            description: 'Lower number appears first',
+            description: 'Nizi broj pojavljuje se prvo',
         },
         {
             name: 'description',
-            title: 'Description',
+            title: 'Opis',
             type: 'text',
             rows: 3,
         },
         {
             name: 'coverImage',
-            title: 'Cover Image',
+            title: 'Thumbnail',
             type: 'image',
             options: { hotspot: true },
+            description: 'Najbolji aspect ratio je 16:9 (1600x900)',
         },
         {
             name: 'items',
@@ -41,14 +43,15 @@ export default {
                     type: 'object',
                     name: 'item',
                     fields: [
-                        { name: 'title', title: 'Title', type: 'string' },
+                        { name: 'title', title: 'Naslov', type: 'string' },
                         {
                             name: 'image',
-                            title: 'Image',
+                            title: 'Slika',
                             type: 'image',
                             options: { hotspot: true },
+                            description: 'Bilo koja rezolucija',
                         },
-                        { name: 'alt', title: 'Alt Text', type: 'string' },
+                        { name: 'alt', title: 'Alt Tekst', type: 'string' },
                     ],
                 },
             ],
@@ -61,7 +64,7 @@ export default {
         },
         prepare({ title, media }) {
             return {
-                title: title || 'Gallery Category',
+                title: title || 'Gallery',
                 media,
             };
         },
