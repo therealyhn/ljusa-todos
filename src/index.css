@@ -22,3 +22,20 @@ html
 {
     scroll-behavior: smooth;
 }
+
+.swiper-pagination-bullet
+{
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+.swiper-pagination-bullet-active
+{
+    background: #ffffff;
+}
+
+.gallery-swiper .swiper-button-prev,
+.gallery-swiper .swiper-button-next
+{
+    color: black;
+    top: 45%;
+}

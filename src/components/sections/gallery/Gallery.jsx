@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import Container from '../../ui/Container';
 import CategoryCard from './CategoryCard';
 import CategoryModal from './CategoryModal';
-import ImageGalleryModal from './ImageGalleryModal';
+import Lightbox from './Lightbox';
 import { sanityClient, urlFor } from '../../../lib/sanityClient';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
 
 export default function Gallery() {
     const [categories, setCategories] = useState([]);
@@ -25,7 +27,6 @@ export default function Gallery() {
                         title,
                         image,
                         alt,
-                        caption
                     }
                 }`
             )
@@ -37,14 +38,17 @@ export default function Gallery() {
                     title: cat.title,
                     description: cat.description,
                     image: cat.coverImage
-                        ? urlFor(cat.coverImage).width(900).height(1200).quality(80).auto('format').url()
+                        ? urlFor(cat.coverImage).width(1000).fit('max').quality(70).auto('format').url()
                         : null,
                     items: (cat.items || []).map((item, index) => ({
                         id: item._key || `${cat._id}-${index}`,
                         title: item.title,
                         caption: item.caption,
-                        image: item.image
-                            ? urlFor(item.image).width(1200).height(1600).quality(80).auto('format').url()
+                        thumb: item.image
+                            ? urlFor(item.image).width(800).fit('max').quality(70).auto('format').url()
+                            : null,
+                        full: item.image
+                            ? urlFor(item.image).width(1800).fit('max').quality(75).auto('format').url()
                             : null,
                         alt: item.alt || item.title,
                     })),
@@ -97,15 +101,27 @@ export default function Gallery() {
                     </p>
                 </div>
 
-                <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    spaceBetween={24}
+                    navigation
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                        0: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                    }}
+                    className="mt-12 gallery-swiper"
+                >
                     {categories.map((category) => (
-                        <CategoryCard
-                            key={category.id}
-                            category={category}
-                            onClick={() => openCategory(category)}
-                        />
+                        <SwiperSlide key={category.id}>
+                            <CategoryCard
+                                category={category}
+                                onClick={() => openCategory(category)}
+                            />
+                        </SwiperSlide>
                     ))}
-                </ul>
+                </Swiper>
             </Container>
 
             {activeCategory && activeImageIndex == null && (
@@ -118,7 +134,7 @@ export default function Gallery() {
             )}
 
             {activeCategory && activeImageIndex != null && (
-                <ImageGalleryModal
+                <Lightbox
                     items={itemsForActiveCategory}
                     activeIndex={activeImageIndex}
                     onClose={closeImage}

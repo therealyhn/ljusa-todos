@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "animate.css";
 
-export default function ImageGalleryModal({ items, activeIndex, onClose, onPrev, onNext }) {
+export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }) {
     const shouldShow = items && items.length > 0 && activeIndex != null;
 
     useEffect(() => {
@@ -65,7 +65,7 @@ export default function ImageGalleryModal({ items, activeIndex, onClose, onPrev,
                 onClick={(e) => e.stopPropagation()}
             >
                 <img
-                    src={current.image}
+                    src={current.full || current.image}
                     alt={current.alt || current.title}
                     className="max-w-full max-h-full object-contain drop-shadow-2xl animate__animated animate__zoomIn pointer-events-auto select-none"
                 />

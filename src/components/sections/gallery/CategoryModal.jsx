@@ -70,7 +70,7 @@ export default function CategoryModal({
                                 >
                                     <div className="rounded-sm overflow-hidden aspect-video sm:aspect-square relative w-full bg-black/20">
                                         <img
-                                            src={item.image}
+                                            src={item.thumb || item.image}
                                             alt={item.alt || item.title}
                                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                             loading="lazy"
