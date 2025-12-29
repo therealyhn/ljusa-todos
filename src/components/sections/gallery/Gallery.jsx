@@ -1,48 +1,65 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from '../../ui/Container';
 import CategoryCard from './CategoryCard';
 import CategoryModal from './CategoryModal';
 import ImageGalleryModal from './ImageGalleryModal';
-
-const categories = [
-    {
-        id: 'solo',
-        title: 'Solo',
-        description: 'Single-artist sets and curated sonic journeys.',
-        image: 'https://placehold.co/900x1200?text=Solo',
-        items: [
-            { id: 's1', title: 'Neon Pulse', image: 'https://placehold.co/1200x1600?text=Solo+01' },
-            { id: 's2', title: 'Glass Room', image: 'https://placehold.co/1200x1600?text=Solo+02' },
-            { id: 's3', title: 'Signal / Noise', image: 'https://placehold.co/1200x1600?text=Solo+03' },
-        ],
-    },
-    {
-        id: 'b2b',
-        title: 'B2B',
-        description: 'Shared energy, live blends, and kinetic edits.',
-        image: 'https://placehold.co/900x1200?text=B2B',
-        items: [
-            { id: 'b1', title: 'Midnight Alloy', image: 'https://placehold.co/1200x1600?text=B2B+01' },
-            { id: 'b2', title: 'Voltage Mix', image: 'https://placehold.co/1200x1600?text=B2B+02' },
-            { id: 'b3', title: 'Parallel', image: 'https://placehold.co/1200x1600?text=B2B+03' },
-        ],
-    },
-    {
-        id: 'studio',
-        title: 'Studio',
-        description: 'Behind-the-scenes shots, sessions, and edits.',
-        image: 'https://placehold.co/900x1200?text=Studio',
-        items: [
-            { id: 'st1', title: 'Deep Cut', image: 'https://placehold.co/1200x1600?text=Studio+01' },
-            { id: 'st2', title: 'Low Light', image: 'https://placehold.co/1200x1600?text=Studio+02' },
-            { id: 'st3', title: 'Darkroom', image: 'https://placehold.co/1200x1600?text=Studio+03' },
-        ],
-    },
-];
+import { sanityClient, urlFor } from '../../../lib/sanityClient';
 
 export default function Gallery() {
+    const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(null);
     const [activeImageIndex, setActiveImageIndex] = useState(null);
+
+    useEffect(() => {
+        let isMounted = true;
+
+        sanityClient
+            .fetch(
+                `*[_type == "galleryCategory"] | order(order asc){
+                    _id,
+                    title,
+                    description,
+                    coverImage,
+                    items[]{
+                        _key,
+                        title,
+                        image,
+                        alt,
+                        caption
+                    }
+                }`
+            )
+            .then((data) => {
+                if (!isMounted) return;
+
+                const mappedCategories = (data || []).map((cat) => ({
+                    id: cat._id,
+                    title: cat.title,
+                    description: cat.description,
+                    image: cat.coverImage
+                        ? urlFor(cat.coverImage).width(900).height(1200).quality(80).auto('format').url()
+                        : null,
+                    items: (cat.items || []).map((item, index) => ({
+                        id: item._key || `${cat._id}-${index}`,
+                        title: item.title,
+                        caption: item.caption,
+                        image: item.image
+                            ? urlFor(item.image).width(1200).height(1600).quality(80).auto('format').url()
+                            : null,
+                        alt: item.alt || item.title,
+                    })),
+                }));
+
+                setCategories(mappedCategories);
+            })
+            .catch((err) => {
+                console.error('Gallery fetch error:', err);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
     const itemsForActiveCategory = activeCategory ? activeCategory.items : [];
 

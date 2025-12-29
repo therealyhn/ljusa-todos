@@ -1,6 +1,6 @@
 import siteSettings from './siteSettings'
 import about from './about'
-import galleryItem from './galleryItem'
+import galleryCategory from './galleryCategory'
 
 
-export const schemaTypes = [siteSettings, about, galleryItem]
+export const schemaTypes = [siteSettings, about, galleryCategory]
