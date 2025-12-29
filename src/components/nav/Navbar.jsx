@@ -9,7 +9,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-20 animate__animated animate__fadeIn animate__slower">
                     {/* Logo */}
                     <a href="#" className="text-5xl font-heading font-bold tracking-tighter text-white z-50 relative">
-                        L T <span className="text-accent-blue">X</span>
+                        <span className="text-accent-blue">X</span> T Y
                     </a>
 
                     {/* Desktop Nav */}
