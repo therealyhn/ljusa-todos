@@ -17,20 +17,12 @@ const BurgerMenu = () => {
         if (!isOpen) setShouldRender(false);
     };
 
-    useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-    }, [isOpen]);
-
     const navLinks = [
         { name: 'Home', href: '#home' },
         { name: 'About', href: '#about' },
-        { name: 'Gallery', href: '#gallery' },
         { name: 'Mashups', href: '#mashups' },
         { name: 'Mixes', href: '#mixes' },
+        { name: 'Gallery', href: '#gallery' },
         { name: 'Booking', href: '#booking' },
     ];
 
@@ -38,7 +30,8 @@ const BurgerMenu = () => {
         <div className="md:hidden">
             <button
                 onClick={toggleMenu}
-                className={`text-white focus:outline-none p-2 transition-all duration-300 ${isOpen ? 'fixed top-5 right-5 z-[10000]' : 'relative z-[70]'}`}
+                className={`text-white focus:outline-none p-2 transition-all duration-300 
+                    ${isOpen ? 'fixed top-5 right-5 z-[10000]' : 'relative z-[70]'}`}
                 aria-label="Toggle menu"
             >
                 {isOpen ? (
@@ -55,7 +48,8 @@ const BurgerMenu = () => {
             {shouldRender && (
                 <div
                     onAnimationEnd={handleAnimationEnd}
-                    className={`fixed inset-0 z-[9999] bg-black flex flex-col px-8 pt-20 pb-2 h-[100vh] overflow-y-auto animate__animated ${isOpen ? 'animate__fadeInDown' : 'animate__fadeOutUp animate__fast'}`}
+                    className={`fixed inset-0 z-[9999] bg-black flex flex-col px-8 pt-20 pb-2 
+                        h-[100vh] overflow-y-auto animate__animated ${isOpen ? 'animate__fadeInDown' : 'animate__fadeOutUp animate__fast'}`}
                 >
                     <nav className="flex flex-col space-y-5">
                         {navLinks.map((link, i) => (
@@ -64,7 +58,11 @@ const BurgerMenu = () => {
                                 href={link.href}
                                 onClick={toggleMenu}
                                 style={{ animationDelay: isOpen ? `${i * 0.1}s` : '0s' }}
-                                className={`relative inline-flex w-fit text-4xl font-heading font-bold text-white hover:text-secondary transition-colors uppercase tracking-tight animate__animated after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-white/70 after:transition-all after:duration-300 after:ease-out hover:after:w-full ${isOpen ? 'animate__fadeInLeft' : 'animate__fadeOutLeft animate__faster'}`}
+                                className={`relative inline-flex w-fit text-4xl font-heading font-bold text-white 
+                                    hover:text-secondary transition-colors uppercase tracking-tight 
+                                    animate__animated after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px 
+                                    after:w-0 after:bg-white/70 after:transition-all after:duration-300 after:ease-out 
+                                    hover:after:w-full ${isOpen ? 'animate__fadeInLeft' : 'animate__fadeOutLeft animate__faster'}`}
                             >
                                 {link.name}
                             </a>
@@ -91,10 +89,11 @@ const BurgerMenu = () => {
                     </div>
 
                     <div
-                        className={`mt-auto pt-8 text-white/20 text-xs uppercase tracking-widest animate__animated ${isOpen ? 'animate__fadeIn' : 'animate__fadeOut animate__faster'}`}
+                        className={`mt-auto pt-8 text-white/20 text-xs uppercase tracking-widest 
+                            animate__animated ${isOpen ? 'animate__fadeIn' : 'animate__fadeOut animate__faster'}`}
                         style={{ animationDelay: isOpen ? '0.9s' : '0s' }}
                     >
-                        LJUSA x TODOS 2025
+                        LTX 2025
                     </div>
                 </div>
             )}

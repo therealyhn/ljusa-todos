@@ -8,16 +8,17 @@ const Navbar = () => {
             <Container>
                 <div className="flex items-center justify-between h-20 animate__animated animate__fadeIn animate__slower">
                     {/* Logo */}
-                    <a href="#" className="text-2xl font-heading font-bold tracking-tighter text-white z-50 relative">
-                        LJUSA <span className="text-accent-blue">x</span> TODOS
+                    <a href="#" className="text-5xl font-heading font-bold tracking-tighter text-white z-50 relative">
+                        L T <span className="text-accent-blue">X</span>
                     </a>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center space-x-8 text-md uppercase font-medium text-secondary">
                         <a href="#about" className="hover:text-primary transition-colors">About</a>
-                        <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
                         <a href="#mashups" className="hover:text-primary transition-colors">Mashups</a>
-                        <Button variant="primary" size="md" className="hover:bg-gray-200 uppercase transition-colors">
+                        <a href="#mixes" className="hover:text-primary transition-colors">Mixes</a>
+                        <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
+                        <Button href="#booking" variant="primary" size="md" className="hover:bg-gray-200 uppercase transition-colors">
                             Book Now
                         </Button>
                     </div>

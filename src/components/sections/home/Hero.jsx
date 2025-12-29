@@ -17,7 +17,7 @@ const Hero = () => {
     if (!data) return null; // Or a loading spinner
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
 
             {/* Background Gradient Spot - subtle glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-blue/20 rounded-full blur-[120px] pointer-events-none" />
@@ -34,10 +34,10 @@ const Hero = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <Button href="#" variant="outline" size="md" className="animate__animated animate__fadeInLeft animate__delay-1s">
+                    <Button href="#mashups" variant="outline" size="md" className="animate__animated animate__fadeInLeft animate__delay-1s">
                         Check Mashups
                     </Button>
-                    <Button href="#" variant="secondary" size="md" className="animate__animated animate__fadeInRight animate__delay-1s">
+                    <Button href="#mixes" variant="secondary" size="md" className="animate__animated animate__fadeInRight animate__delay-1s">
                         Listen to Mixes
                     </Button>
                 </div>
