@@ -1,55 +1,61 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Container from '../../ui/Container';
 import MashupPlayer from './MashupPlayer';
 import MashupList from './MashupList';
-
-const mashups = [
-    {
-        id: 'm1',
-        title: 'Neon Circuit',
-        artist: 'LJUSA x TODOS',
-        duration: '3:24',
-        src: '',
-    },
-    {
-        id: 'm2',
-        title: 'Midnight Alloy',
-        artist: 'LJUSA x TODOS',
-        duration: '4:02',
-        src: '',
-    },
-    {
-        id: 'm3',
-        title: 'Glass Room',
-        artist: 'LJUSA x TODOS',
-        duration: '3:11',
-        src: '',
-    },
-    {
-        id: 'm4',
-        title: 'Voltage',
-        artist: 'LJUSA x TODOS',
-        duration: '5:08',
-        src: '',
-    },
-    {
-        id: 'm5',
-        title: 'Parallel',
-        artist: 'LJUSA x TODOS',
-        duration: '4:36',
-        src: '',
-    },
-];
+import { sanityClient } from '../../../lib/sanityClient';
 
 export default function Mashups() {
+    const [mashups, setMashups] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentTrack = mashups[currentIndex];
 
+    useEffect(() => {
+        let isMounted = true;
+
+        sanityClient
+            .fetch(`*[_type == "mashupLibrary"][0]{
+                items[]{
+                    _key,
+                    title,
+                    artist,
+                    audioFile{
+                        asset->{
+                            url
+                        }
+                    },
+                    duration,
+                    tags
+                }
+            }`)
+            .then((data) => {
+                if (!isMounted) return;
+                const mapped = (data?.items || []).map((item) => ({
+                    id: item._key,
+                    title: item.title,
+                    artist: item.artist || 'LJUSA x TODOS',
+                    duration: item.duration,
+                    src: item.audioFile?.asset?.url || '',
+                    tags: item.tags || [],
+                }));
+                setMashups(mapped);
+                setCurrentIndex(0);
+            })
+            .catch((err) => {
+                console.error('Mashups fetch error:', err);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+
     const handleNext = () => {
+        if (!mashups.length) return;
         setCurrentIndex((i) => (i + 1) % mashups.length);
     };
 
     const handlePrev = () => {
+        if (!mashups.length) return;
         setCurrentIndex((i) => (i - 1 + mashups.length) % mashups.length);
     };
 

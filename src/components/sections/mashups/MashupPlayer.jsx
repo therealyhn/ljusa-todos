@@ -82,6 +82,18 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                         {track.title}
                     </h3>
                     <p className="text-sm text-secondary">{track.artist}</p>
+                    {track.tags?.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-2">
+                            {track.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="text-[10px] uppercase tracking-widest text-secondary border border-white/10 px-2 py-1"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex items-center gap-4">
