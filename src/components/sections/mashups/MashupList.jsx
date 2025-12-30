@@ -12,7 +12,7 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
     return (
         <div className="h-full flex flex-col">
             <h3 className="text-white/40 text-xs uppercase tracking-[0.2em] mb-6 pl-2">Up Next</h3>
-            <div className="h-[420px] md:h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="h-[300px] md:h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                 {tracks.map((track, index) => {
                     const isActive = index === currentIndex;
                     return (

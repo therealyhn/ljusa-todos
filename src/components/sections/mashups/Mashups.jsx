@@ -60,7 +60,7 @@ export default function Mashups() {
     };
 
     return (
-        <section id="mashups" className="min-h-screen bg-black relative py-24 overflow-hidden">
+        <section id="mashups" className="md:min-h-screen bg-black md:py-24 py-10 relative overflow-hidden">
 
             {/* Ambient Background */}
             <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />

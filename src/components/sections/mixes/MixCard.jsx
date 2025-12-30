@@ -1,5 +1,14 @@
 import { useState } from 'react';
 
+const getYoutubeThumbnail = (url) => {
+    if (!url) return '';
+    const match = url.match(
+        /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/
+    );
+    if (!match) return '';
+    return `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg`;
+};
+
 export default function MixCard({ mix, onOpen }) {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -12,9 +21,9 @@ export default function MixCard({ mix, onOpen }) {
         >
             {/* Thumbnail Wrapper */}
             <div className="relative aspect-video w-full overflow-hidden bg-white/5 rounded-sm">
-                {mix.thumbnail ? (
+                {getYoutubeThumbnail(mix.youtubeUrl) ? (
                     <img
-                        src={mix.thumbnail}
+                        src={getYoutubeThumbnail(mix.youtubeUrl)}
                         alt={mix.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
                         loading="lazy"
@@ -22,6 +31,7 @@ export default function MixCard({ mix, onOpen }) {
                 ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-black" />
                 )}
+                <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -39,7 +49,7 @@ export default function MixCard({ mix, onOpen }) {
                     {mix.title}
                 </h3>
                 {mix.djName && (
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-secondary/60">
+                    <p className="text-[12px] md:text-[14px] uppercase tracking-[0.25em] text-secondary/60">
                         {mix.djName}
                     </p>
                 )}

@@ -30,12 +30,6 @@ export default {
                             type: 'array',
                             of: [{ type: 'reference', to: [{ type: 'mixFilter' }] }],
                         },
-                        {
-                            name: 'thumbnail',
-                            title: 'Thumbnail',
-                            type: 'image',
-                            options: { hotspot: true },
-                        },
                     ],
                 },
             ],

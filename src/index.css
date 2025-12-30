@@ -66,3 +66,28 @@ html
 {
     background: rgba(255, 255, 255, 0.8);
 }
+
+/* Mixes Mobile Swiper Arrows */
+.mixes-mobile-swiper .swiper-button-prev,
+.mixes-mobile-swiper .swiper-button-next
+{
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    transform: scale(0.6);
+    /* Make them smaller */
+    font-weight: bold;
+}
+
+.mixes-mobile-swiper .swiper-button-prev:hover,
+.mixes-mobile-swiper .swiper-button-next:hover
+{
+    color: rgba(255, 255, 255, 0.9);
+    transform: scale(0.7);
+}
+
+.mixes-mobile-swiper .swiper-button-prev::after,
+.mixes-mobile-swiper .swiper-button-next::after
+{
+    font-size: 2rem;
+    /* Adjust arrow size */
+}

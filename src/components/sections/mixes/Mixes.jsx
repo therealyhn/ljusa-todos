@@ -4,8 +4,13 @@ import MixCard from './MixCard';
 import MixModal from './MixModal';
 import Button from '../../ui/Button';
 import { sanityClient, urlFor } from '../../../lib/sanityClient';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const INITIAL_VISIBLE = 6;
+const MOBILE_VISIBLE = 3;
 
 export default function Mixes() {
     const [filters, setFilters] = useState([]);
@@ -13,6 +18,7 @@ export default function Mixes() {
     const [activeFilter, setActiveFilter] = useState('all');
     const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
     const [activeMix, setActiveMix] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -31,8 +37,7 @@ export default function Mixes() {
                     filters[]->{
                         _id,
                         title
-                    },
-                    thumbnail
+                    }
                 }
             }`),
         ])
@@ -50,9 +55,6 @@ export default function Mixes() {
                     djName: item.djName,
                     youtubeUrl: item.youtubeUrl,
                     filters: (item.filters || []).map((filter) => filter._id),
-                    thumbnail: item.thumbnail
-                        ? urlFor(item.thumbnail).width(800).fit('max').quality(70).auto('format').url()
-                        : null,
                 }));
 
                 setFilters(mappedFilters);
@@ -67,25 +69,43 @@ export default function Mixes() {
         };
     }, []);
 
+    useEffect(() => {
+        const media = window.matchMedia('(max-width: 767px)');
+        const update = () => setIsMobile(media.matches);
+        update();
+        if (media.addEventListener) {
+            media.addEventListener('change', update);
+        } else {
+            media.addListener(update);
+        }
+        return () => {
+            if (media.removeEventListener) {
+                media.removeEventListener('change', update);
+            } else {
+                media.removeListener(update);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        setVisibleCount(isMobile ? MOBILE_VISIBLE : INITIAL_VISIBLE);
+    }, [isMobile]);
+
     const filteredMixes = useMemo(() => {
         if (activeFilter === 'all') return mixes;
         return mixes.filter((mix) => mix.filters.includes(activeFilter));
     }, [mixes, activeFilter]);
 
     const visibleMixes = filteredMixes.slice(0, visibleCount);
-    const canLoadMore = visibleCount < filteredMixes.length;
+    const canLoadMore = !isMobile && visibleCount < filteredMixes.length;
 
     const handleFilterChange = (slug) => {
         setActiveFilter(slug);
-        setVisibleCount(INITIAL_VISIBLE);
+        setVisibleCount(isMobile ? MOBILE_VISIBLE : INITIAL_VISIBLE);
     };
 
     return (
-        <section id="mixes" className="min-h-screen bg-black py-24 relative overflow-hidden">
-
-            {/* Ambient Background - Left Side Blue/Purple Glow to balance Mashups' right side */}
-            <div className="absolute top-1/4 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-accent-blue/[0.03] rounded-full blur-[100px] pointer-events-none" />
-
+        <section id="mixes" className="md:min-h-screen bg-background md:py-24 py-10 relative overflow-hidden">
             <Container className="relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-5xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90">
@@ -121,11 +141,29 @@ export default function Mixes() {
                     ))}
                 </div>
 
-                <div className="mt-16 grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
-                    {visibleMixes.map((mix) => (
-                        <MixCard key={mix.id} mix={mix} onOpen={() => setActiveMix(mix)} />
-                    ))}
-                </div>
+                {isMobile ? (
+                    <div className="mt-12 px-4 -mx-4 mixes-mobile-swiper">
+                        <Swiper
+                            modules={[Navigation]}
+                            navigation={true}
+                            slidesPerView={1.15}
+                            centeredSlides={true}
+                            spaceBetween={20}
+                            loop={filteredMixes.length > 2}
+                        >  {filteredMixes.map((mix) => (
+                            <SwiperSlide key={mix.id}>
+                                <MixCard mix={mix} onOpen={() => setActiveMix(mix)} />
+                            </SwiperSlide>
+                        ))}
+                        </Swiper>
+                    </div>
+                ) : (
+                    <div className="mt-16 grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+                        {visibleMixes.map((mix) => (
+                            <MixCard key={mix.id} mix={mix} onOpen={() => setActiveMix(mix)} />
+                        ))}
+                    </div>
+                )}
 
                 {canLoadMore && (
                     <div className="mt-20 flex justify-center">
