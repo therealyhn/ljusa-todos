@@ -4,6 +4,7 @@ import About from './components/sections/about/About';
 import Gallery from './components/sections/gallery/Gallery';
 import Mashups from './components/sections/mashups/Mashups';
 import Mixes from './components/sections/mixes/Mixes';
+import Booking from './components/sections/booking/Booking';
 
 function App() {
   return (
@@ -14,9 +15,7 @@ function App() {
       <Mashups />
       <Mixes />
       <Gallery />
-
-      {/* Placeholder for future sections to allow scrolling */}
-      <div className="h-screen"></div>
+      <Booking />
     </main>
   );
 }

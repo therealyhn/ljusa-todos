@@ -19,8 +19,10 @@ const Navbar = () => {
                         <a href="#mashups" className="hover:text-primary transition-colors">Mashups</a>
                         <a href="#mixes" className="hover:text-primary transition-colors">Mixes</a>
                         <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
-                        <Button href="#booking" variant="primary" size="md" className="hover:bg-gray-200 uppercase transition-colors">
-                            Book Now
+                        <Button variant="primary" size="md" className="hover:bg-gray-200 uppercase transition-colors">
+                            <a href="#booking">
+                                Book Now
+                            </a>
                         </Button>
                     </div>
                     {/* Mobile Nav Component */}

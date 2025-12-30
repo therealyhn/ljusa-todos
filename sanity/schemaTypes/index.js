@@ -5,5 +5,7 @@ import mashupLibrary from './mashupLibrary'
 import mixLibrary from './mixLibrary'
 import mixFilter from './mixFilter'
 
+import bookingOption from './bookingOption'
 
-export const schemaTypes = [siteSettings, about, galleryCategory, mashupLibrary, mixLibrary, mixFilter]
+
+export const schemaTypes = [siteSettings, about, galleryCategory, mashupLibrary, mixLibrary, mixFilter, bookingOption]
