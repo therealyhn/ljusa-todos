@@ -92,7 +92,7 @@ export default function Gallery() {
     };
 
     return (
-        <section id="gallery" className="py-20 md:py-28 bg-background">
+        <section id="gallery" className="py-20 md:py-28 bg-black">
             <Container>
                 <div className="text-center mb-10 md:mb-16">
                     <h2 className="text-4xl sm:text-6xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90 leading-none">

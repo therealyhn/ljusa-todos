@@ -1,6 +1,7 @@
 import Container from '../ui/Container';
 import BurgerMenu from '../ui/BurgerMenu';
 import Button from '../ui/Button';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
     return (
@@ -8,8 +9,8 @@ const Navbar = () => {
             <Container>
                 <div className="flex items-center justify-between h-20 animate__animated animate__fadeIn animate__slower">
                     {/* Logo */}
-                    <a href="#" className="text-5xl font-heading font-bold tracking-tighter text-white z-50 relative">
-                        <span className="text-accent-blue">X</span> T Y
+                    <a href="#" className="z-50 relative">
+                        <img src={logo} alt="Logo" className="w-auto h-12 md:h-16 object-contain" />
                     </a>
 
                     {/* Desktop Nav */}

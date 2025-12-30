@@ -72,7 +72,7 @@ const BurgerMenu = () => {
                     <div className="mt-10 h-px w-16 bg-white/10"></div>
 
                     <div className="mt-8 space-y-8">
-                        {['LJUSA', 'TODOS'].map((brand, i) => (
+                        {['YHN', 'TODOS'].map((brand, i) => (
                             <div
                                 key={brand}
                                 className={`animate__animated ${isOpen ? 'animate__fadeInUp' : 'animate__fadeOutDown animate__faster'}`}

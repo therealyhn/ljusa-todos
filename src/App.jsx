@@ -3,6 +3,7 @@ import Hero from './components/sections/home/Hero';
 import About from './components/sections/about/About';
 import Gallery from './components/sections/gallery/Gallery';
 import Mashups from './components/sections/mashups/Mashups';
+import Mixes from './components/sections/mixes/Mixes';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Hero />
       <About />
       <Mashups />
+      <Mixes />
       <Gallery />
 
       {/* Placeholder for future sections to allow scrolling */}
