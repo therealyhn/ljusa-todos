@@ -59,7 +59,7 @@ A premium, high-performance portfolio and booking platform for the DJ duo **X T 
 | Animations | Animate.css + Swiper.js                        |
 | Backend    | Sanity CMS (Headless)                          |
 | Forms      | Web3Forms (Direct Email API)                   |
-| Deployment | GitHub Pages / Vercel (Recommended)           |
+| Deployment | Hostinger / GitHub Actions                     |
 
 ---
 
