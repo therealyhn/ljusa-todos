@@ -94,12 +94,12 @@ export default function Gallery() {
     return (
         <section id="gallery" className="py-20 md:py-28 bg-background">
             <Container>
-                <div className="text-center mb-16">
-                    <h2 className="text-5xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90">
+                <div className="text-center mb-10 md:mb-16">
+                    <h2 className="text-4xl sm:text-6xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90 leading-none">
                         Gallery
                     </h2>
-                    <div className="h-1 w-20 bg-white/20 mx-auto mt-6 mb-6"></div>
-                    <p className="max-w-xl mx-auto text-secondary text-sm uppercase tracking-widest">
+                    <div className="h-0.5 md:h-1 w-12 md:w-20 bg-white/20 mx-auto mt-4 md:mt-6 mb-4 md:mb-6"></div>
+                    <p className="max-w-xl mx-auto text-secondary text-xs md:text-sm uppercase tracking-widest px-4">
                         Exclusive photos & videos from the party.
                     </p>
                 </div>

@@ -34,11 +34,11 @@ const Hero = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                    <Button href="#mashups" variant="outline" size="md" className="animate__animated animate__fadeInLeft animate__delay-1s">
-                        Check Mashups
+                    <Button variant="outline" size="md" className="animate__animated animate__fadeInLeft animate__delay-1s">
+                        <a href="#mashups">Check Mashups</a>
                     </Button>
-                    <Button href="#mixes" variant="secondary" size="md" className="animate__animated animate__fadeInRight animate__delay-1s">
-                        Listen to Mixes
+                    <Button variant="secondary" size="md" className="animate__animated animate__fadeInRight animate__delay-1s">
+                        <a href="#mixes">Listen to Mixes</a>
                     </Button>
                 </div>
             </Container>

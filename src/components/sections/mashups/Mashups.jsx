@@ -76,15 +76,15 @@ export default function Mashups() {
                     </p>
                 </div>
 
-                <div className="grid gap-12 lg:grid-cols-[1fr_1fr] items-start">
-                    <div className="top-24 sticky">
+                <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1fr_1fr] items-start relative">
+                    <div className="lg:sticky lg:top-24 z-20 bg-black/50 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none -mx-4 px-4 py-6 lg:p-0 border-b border-white/10 lg:border-none">
                         <MashupPlayer
                             track={currentTrack}
                             onNext={handleNext}
                             onPrev={handlePrev}
                         />
                     </div>
-                    <div className="pt-4 px-4 md:px-0">
+                    <div className="pt-0 lg:pt-4 px-0 md:px-0 pb-12">
                         <MashupList
                             tracks={mashups}
                             currentIndex={currentIndex}

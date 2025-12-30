@@ -76,16 +76,16 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
     return (
         <div className="relative">
             {/* Current Track Info */}
-            <div className="flex flex-col gap-6 text-center mb-10">
-                <div className="flex flex-col gap-3">
-                    <p className="text-[10px] uppercase tracking-[0.4em] text-accent-blue animate-pulse">Now Playing</p>
-                    <h3 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase leading-none tracking-tight">
+            <div className="flex flex-col gap-4 md:gap-6 text-center mb-6 md:mb-10">
+                <div className="flex flex-col gap-2 md:gap-3">
+                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] text-accent-blue animate-pulse">Now Playing</p>
+                    <h3 className="text-2xl sm:text-4xl md:text-5xl font-heading font-bold text-white uppercase leading-none tracking-tight px-2">
                         {track.title}
                     </h3>
-                    <p className="text-sm md:text-base text-secondary/80 uppercase tracking-widest">{track.artist}</p>
+                    <p className="text-xs md:text-base text-secondary/80 uppercase tracking-widest">{track.artist}</p>
 
                     {track.tags?.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-2 pt-2 opacity-50">
+                        <div className="flex flex-wrap justify-center gap-2 pt-1 md:pt-2 opacity-50">
                             {track.tags.map((tag) => (
                                 <span
                                     key={tag}
@@ -117,11 +117,11 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                         aria-label={isPlaying ? 'Pause' : 'Play'}
                     >
                         {isPlaying ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-12 h-12">
                                 <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                             </svg>
                         ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-8 h-8 ml-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-12 h-12 ml-1">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         )}
