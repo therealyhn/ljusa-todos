@@ -90,6 +90,8 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
         { id: 'both', name: 'Both (B2B)' }
     ];
 
+    const isSubmitted = status.type === 'success';
+
     return (
         <div className="fixed inset-0 z-[80] bg-black/98 backdrop-blur-xl flex items-center justify-center p-4 animate__animated animate__fadeIn animate__faster">
             <div className="absolute inset-0" onClick={onClose} />
@@ -115,15 +117,32 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
                     </button>
                 </div>
 
-                <form className="p-8 grid gap-8 max-h-[75vh] overflow-y-auto custom-scrollbar" onSubmit={handleSubmit}>
-                    {status.message && (
-                        <div className={`p-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center ${status.type === 'success' ? 'bg-green-500/10 text-green-500' :
-                            status.type === 'error' ? 'bg-red-500/10 text-red-500' :
-                                'bg-white/5 text-white/70'
-                            }`}>
-                            {status.message}
-                        </div>
-                    )}
+                {isSubmitted ? (
+                    <div className="p-12 text-center">
+                        <h4 className="text-2xl font-heading font-semibold text-white uppercase tracking-tight">
+                            Request Sent
+                        </h4>
+                        <p className="mt-4 text-secondary text-sm uppercase tracking-widest">
+                            We will contact you soon with availability.
+                        </p>
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="mt-8 bg-white text-black px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#e0e0e0] transition-colors"
+                        >
+                            Close
+                        </button>
+                    </div>
+                ) : (
+                    <form className="p-8 grid gap-8 max-h-[75vh] overflow-y-auto custom-scrollbar" onSubmit={handleSubmit}>
+                        {status.message && (
+                            <div className={`p-4 text-[10px] font-bold uppercase tracking-[0.2em] text-center ${status.type === 'error' ? 'bg-red-500/10 text-red-500' :
+                                status.type === 'info' ? 'bg-white/5 text-white/70' :
+                                    'bg-white/5 text-white/70'
+                                }`}>
+                                {status.message}
+                            </div>
+                        )}
 
                     <div className="grid gap-3">
                         <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Type</label>
@@ -236,7 +255,8 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
                             {isSubmitting ? 'Processing...' : 'Submit'}
                         </button>
                     </div>
-                </form>
+                    </form>
+                )}
             </div>
         </div>
     );
