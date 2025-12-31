@@ -93,9 +93,7 @@ export default function Gallery() {
 
     return (
         <section id="gallery" className="py-20 md:py-28 bg-surface">
-            <div className="absolute top-[80%] left-[5%] -translate-y-1/2 -rotate-90 origin-left text-[9vw] font-heading font-black text-black uppercase select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter hidden lg:block animate__animated animate__fadeIn">
-                Gallery
-            </div>
+
             <Container>
                 <div className="text-center mb-10 md:mb-16">
                     <h2 className="text-4xl sm:text-6xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90 leading-none">
