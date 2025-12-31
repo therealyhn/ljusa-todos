@@ -25,5 +25,13 @@ export default {
             title: 'Hero Description',
             type: 'text',
         },
+        {
+            name: 'heroImage',
+            title: 'Hero Image',
+            type: 'image',
+            options: {
+                hotspot: true
+            }
+        }
     ],
 }
