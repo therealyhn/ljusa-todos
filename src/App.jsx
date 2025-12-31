@@ -5,6 +5,7 @@ import Gallery from './components/sections/gallery/Gallery';
 import Mashups from './components/sections/mashups/Mashups';
 import Mixes from './components/sections/mixes/Mixes';
 import Booking from './components/sections/booking/Booking';
+import Footer from './components/nav/Footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Mixes />
       <Gallery />
       <Booking />
+      <Footer />
     </main>
   );
 }
