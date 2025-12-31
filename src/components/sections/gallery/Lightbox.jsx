@@ -40,10 +40,10 @@ export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }
             {/* PREV BUTTON */}
             <button
                 onClick={(e) => { e.stopPropagation(); onPrev(); }}
-                className="absolute left-4 md:left-12 text-white/30 hover:text-white transition-colors z-20 group"
+                className="absolute left-4 md:left-12 text-black/50 hover:text-black md:text-white/50 hover:md:text-white transition-colors z-20 group"
                 aria-label="Previous"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 transform group-hover:-translate-x-2 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 transform group-hover:-translate-x-2 transition-transform drop-shadow-lg">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
             </button>
@@ -51,10 +51,10 @@ export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }
             {/* NEXT BUTTON */}
             <button
                 onClick={(e) => { e.stopPropagation(); onNext(); }}
-                className="absolute right-4 md:right-12 text-white/30 hover:text-white transition-colors z-20 group"
+                className="absolute right-4 md:right-12 text-black/50 hover:text-black md:text-white/50 hover:md:text-white transition-colors z-20 group"
                 aria-label="Next"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 transform group-hover:translate-x-2 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16 transform group-hover:translate-x-2 transition-transform drop-shadow-lg">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
             </button>
