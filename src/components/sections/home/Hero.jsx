@@ -27,8 +27,8 @@ const Hero = () => {
         <section id="home" className="relative min-h-screen flex items-center overflow-hidden pt-28 lg:pt-20 bg-black">
 
             {/* Background Editorial Text */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 -rotate-90 origin-left text-[20vw] font-heading font-black text-white/[0.03] uppercase select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter hidden lg:block animate__animated animate__fadeIn">
-                THE DUO
+            <div className="absolute top-[90%] left-[10%] -translate-y-1/2 -rotate-90 origin-left text-[20vw] font-heading font-black text-white/[0.03] uppercase select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter hidden lg:block animate__animated animate__fadeIn">
+                X T Y
             </div>
 
             <Container className="relative z-10 w-full">
