@@ -86,7 +86,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] text-white/40">
-                    <p>© {new Date().getFullYear()} X T Y (YHN & TODOS). ALL RIGHTS RESERVED.</p>
+                    <p>© {new Date().getFullYear()} X T Y. ALL RIGHTS RESERVED.</p>
                     <p>DESIGNED & DEVELOPED BY <a href="https://jovanljusic.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">Jovan Ljusic (YHN)</a></p>
                     <div className="flex gap-8">
                         <button onClick={() => setLegalType('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
