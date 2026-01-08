@@ -13,7 +13,7 @@ export default function CategoryCard({ category, onClick, className = "" }) {
                 <img
                     src={imageUrl}
                     alt={category.alt || category.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-60"
+                    className="absolute inset-0 h-full w-full object-cover grayscale transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-60"
                     loading="lazy"
                 />
 
