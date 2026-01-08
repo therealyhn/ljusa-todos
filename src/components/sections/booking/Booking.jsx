@@ -26,9 +26,6 @@ export default function Booking() {
 
     return (
         <section id="booking" className="min-h-screen/2 bg-background py-24 relative overflow-hidden">
-            <div className="absolute top-[80%] left-[5%] -translate-y-1/2 -rotate-90 origin-left text-[9vw] font-heading font-black text-white/[0.03] uppercase select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter hidden lg:block animate__animated animate__fadeIn">
-                Booking
-            </div>
             <Container className="relative z-10">
                 <div className="text-center mb-16">
                     <h2 className="text-5xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90">

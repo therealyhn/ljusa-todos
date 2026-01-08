@@ -14,11 +14,6 @@ const About = () => {
     return (
         <section id="about" className="py-24 md:py-40 bg-black relative overflow-hidden">
 
-            {/* Background Editorial Text */}
-            <div className="absolute top-[92%] left-[5%] -translate-y-1/2 -rotate-90 origin-left text-[9vw] font-heading font-black text-white/[0.03] uppercase select-none pointer-events-none whitespace-nowrap leading-none tracking-tighter hidden lg:block animate__animated animate__fadeIn">
-                THE STORY
-            </div>
-
             <Container className="relative z-10">
                 <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
 
