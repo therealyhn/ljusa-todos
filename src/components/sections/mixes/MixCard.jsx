@@ -21,9 +21,16 @@ export default function MixCard({ mix, onOpen }) {
         >
             {/* Thumbnail Wrapper */}
             <div className="relative aspect-video w-full overflow-hidden bg-white/5 rounded-sm">
-                {getYoutubeThumbnail(mix.youtubeUrl) ? (
+                {mix.platform === 'youtube' && getYoutubeThumbnail(mix.mixUrl) ? (
                     <img
-                        src={getYoutubeThumbnail(mix.youtubeUrl)}
+                        src={getYoutubeThumbnail(mix.mixUrl)}
+                        alt={mix.title}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                        loading="lazy"
+                    />
+                ) : mix.thumbnail ? (
+                    <img
+                        src={mix.thumbnail}
                         alt={mix.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
                         loading="lazy"

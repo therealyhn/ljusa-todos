@@ -33,11 +33,13 @@ export default function Mixes() {
                     _key,
                     title,
                     djName,
-                    youtubeUrl,
+                    platform,
+                    mixUrl,
                     filters[]->{
                         _id,
                         title
-                    }
+                    },
+                    thumbnail
                 }
             }`),
         ])
@@ -53,8 +55,12 @@ export default function Mixes() {
                     id: item._key,
                     title: item.title,
                     djName: item.djName,
-                    youtubeUrl: item.youtubeUrl,
+                    platform: item.platform || 'youtube',
+                    mixUrl: item.mixUrl,
                     filters: (item.filters || []).map((filter) => filter._id),
+                    thumbnail: item.thumbnail
+                        ? urlFor(item.thumbnail).width(800).fit('max').quality(70).auto('format').url()
+                        : null,
                 }));
 
                 setFilters(mappedFilters);
