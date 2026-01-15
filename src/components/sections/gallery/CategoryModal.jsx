@@ -70,14 +70,22 @@ export default function CategoryModal({
                                 >
                                     <div className="rounded-sm overflow-hidden aspect-video sm:aspect-square relative w-full bg-black/20">
                                         {item.videoUrl ? (
-                                            <video
-                                                src={item.videoUrl}
-                                                poster={item.thumb || undefined}
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                                muted
-                                                playsInline
-                                                preload="metadata"
-                                            />
+                                            <>
+                                                <video
+                                                    src={item.videoUrl}
+                                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                    muted
+                                                    playsInline
+                                                    preload="metadata"
+                                                />
+                                                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                                                    <div className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-white ml-0.5">
+                                                            <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </>
                                         ) : (
                                             <img
                                                 src={item.thumb || item.image}
