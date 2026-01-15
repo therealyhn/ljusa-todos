@@ -26,6 +26,11 @@ export default function Gallery() {
                         _key,
                         title,
                         image,
+                        video{
+                            asset->{
+                                url
+                            }
+                        },
                         alt,
                     }
                 }`
@@ -50,6 +55,7 @@ export default function Gallery() {
                         full: item.image
                             ? urlFor(item.image).width(1800).fit('max').quality(75).auto('format').url()
                             : null,
+                        videoUrl: item.video?.asset?.url || null,
                         alt: item.alt || item.title,
                     })),
                 }));

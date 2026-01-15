@@ -51,6 +51,13 @@ export default {
                             options: { hotspot: true },
                             description: 'Bilo koja rezolucija',
                         },
+                        {
+                            name: 'video',
+                            title: 'Video',
+                            type: 'file',
+                            options: { accept: 'video/*' },
+                            description: 'Ako je video, ostavi sliku prazno',
+                        },
                         { name: 'alt', title: 'Alt Tekst', type: 'string' },
                     ],
                 },

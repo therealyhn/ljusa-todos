@@ -69,12 +69,23 @@ export default function CategoryModal({
                                     className="group cursor-pointer flex flex-col gap-3"
                                 >
                                     <div className="rounded-sm overflow-hidden aspect-video sm:aspect-square relative w-full bg-black/20">
-                                        <img
-                                            src={item.thumb || item.image}
-                                            alt={item.alt || item.title}
-                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                            loading="lazy"
-                                        />
+                                        {item.videoUrl ? (
+                                            <video
+                                                src={item.videoUrl}
+                                                poster={item.thumb || undefined}
+                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                muted
+                                                playsInline
+                                                preload="metadata"
+                                            />
+                                        ) : (
+                                            <img
+                                                src={item.thumb || item.image}
+                                                alt={item.alt || item.title}
+                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                loading="lazy"
+                                            />
+                                        )}
                                         {/* Overlay hint */}
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-white drop-shadow-lg">

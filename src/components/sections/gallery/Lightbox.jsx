@@ -64,11 +64,20 @@ export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }
                 className="relative w-full h-full p-4 md:p-20 flex items-center justify-center pointer-events-none"
                 onClick={(e) => e.stopPropagation()}
             >
-                <img
-                    src={current.full || current.image}
-                    alt={current.alt || current.title}
-                    className="max-w-full max-h-full object-contain drop-shadow-2xl shadow-black animate__animated animate__zoomIn pointer-events-auto select-none"
-                />
+                {current.videoUrl ? (
+                    <video
+                        src={current.videoUrl}
+                        controls
+                        playsInline
+                        className="max-w-full max-h-full object-contain drop-shadow-2xl shadow-black animate__animated animate__zoomIn pointer-events-auto select-none"
+                    />
+                ) : (
+                    <img
+                        src={current.full || current.image}
+                        alt={current.alt || current.title}
+                        className="max-w-full max-h-full object-contain drop-shadow-2xl shadow-black animate__animated animate__zoomIn pointer-events-auto select-none"
+                    />
+                )}
 
                 {/* CAPTION & COUNTER - Elegant Bottom Style */}
                 <div className="absolute bottom-6 md:bottom-12 left-0 w-full text-center pointer-events-none">
