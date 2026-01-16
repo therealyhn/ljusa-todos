@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import Button from '../../ui/Button';
 import "animate.css";
 
-export default function BookingModal({ isOpen, selectedOption, onClose, options = [] }) {
+export default function BookingModal({ isOpen, selectedOption, onClose }) {
     const [formData, setFormData] = useState({
         eventType: '',
-        artist: 'yhn', // Default
+        artist: 'b2b',
         name: '',
         email: '',
         date: '',
@@ -20,7 +20,7 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
             setFormData(prev => ({
                 ...prev,
                 eventType: selectedOption.title || 'Selected Event',
-                artist: selectedOption.title?.toLowerCase().includes('b2b') ? 'both' : prev.artist || 'yhn'
+                artist: 'b2b'
             }));
         }
     }, [selectedOption]);
@@ -48,7 +48,7 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
         const formObject = {
             ...formData,
             access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-            subject: `New Booking Request: ${formData.eventType} - ${formData.artist}`,
+            subject: `New Booking Request: ${formData.eventType} - B2B`,
             from_name: formData.name,
         };
 
@@ -83,12 +83,6 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
-
-    const artists = [
-        { id: 'yhn', name: 'Yhn' },
-        { id: 'todos', name: 'Todos' },
-        { id: 'both', name: 'Both (B2B)' }
-    ];
 
     const isSubmitted = status.type === 'success';
 
@@ -144,117 +138,98 @@ export default function BookingModal({ isOpen, selectedOption, onClose, options 
                             </div>
                         )}
 
-                    <div className="grid gap-3">
-                        <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Type</label>
-                        <div className="w-full bg-white/[0.02] border border-white/5 px-4 py-4 text-white/40 cursor-not-allowed text-[11px] uppercase tracking-[0.15em] font-medium">
-                            {formData.eventType}
-                        </div>
-                    </div>
-
-                    <div className="grid gap-4">
-                        <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Artist Selection</label>
-                        <div className="grid grid-cols-3 gap-3">
-                            {artists.map((artist) => (
-                                <button
-                                    key={artist.id}
-                                    type="button"
-                                    onClick={() => setFormData(prev => ({ ...prev, artist: artist.id }))}
-                                    className={`py-4 px-2 text-[10px] uppercase tracking-[0.2em] font-black border transition-all duration-500 ${formData.artist === artist.id
-                                        ? 'bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]'
-                                        : 'bg-transparent text-white/30 border-white/5 hover:border-white/20'
-                                        }`}
-                                >
-                                    {artist.name}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
                         <div className="grid gap-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Your Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
+                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Type</label>
+                            <div className="w-full bg-white/[0.02] border border-white/5 px-4 py-4 text-white/40 cursor-not-allowed text-[11px] uppercase tracking-[0.15em] font-medium">
+                                {formData.eventType}
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="grid gap-3">
+                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Your Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="ENTER NAME"
+                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    required
+                                />
+                            </div>
+
+                            <div className="grid gap-3">
+                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Email Address</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="ENTER EMAIL"
+                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="grid gap-3">
+                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Date</label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={formData.date}
+                                    onChange={handleChange}
+                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    required
+                                />
+                            </div>
+
+                            <div className="grid gap-3">
+                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Set Duration</label>
+                                <input
+                                    type="text"
+                                    name="duration"
+                                    value={formData.duration}
+                                    onChange={handleChange}
+                                    placeholder="E.G. 3 HOURS"
+                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid gap-3">
+                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Additional Details</label>
+                            <textarea
+                                name="details"
+                                value={formData.details}
                                 onChange={handleChange}
-                                placeholder="ENTER NAME"
-                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                rows="2"
+                                placeholder="TELL US ABOUT THE VIBE, VENUE, AND REQUIREMENTS..."
+                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors h-24 resize-none uppercase tracking-wider leading-relaxed"
                                 required
                             />
                         </div>
 
-                        <div className="grid gap-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Email Address</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="ENTER EMAIL"
-                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
-                                required
-                            />
+                        <div className="flex justify-end gap-6 pt-10 border-t border-white/5">
+                            <button
+                                type="button"
+                                onClick={onClose}
+                                disabled={isSubmitting}
+                                className="text-[10px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors disabled:opacity-50"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className="bg-white text-black px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#e0e0e0] transition-colors disabled:opacity-50 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+                            >
+                                {isSubmitting ? 'Processing...' : 'Submit'}
+                            </button>
                         </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="grid gap-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Date</label>
-                            <input
-                                type="date"
-                                name="date"
-                                value={formData.date}
-                                onChange={handleChange}
-                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
-                                required
-                            />
-                        </div>
-
-                        <div className="grid gap-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Set Duration</label>
-                            <input
-                                type="text"
-                                name="duration"
-                                value={formData.duration}
-                                onChange={handleChange}
-                                placeholder="E.G. 3 HOURS"
-                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid gap-3">
-                        <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Additional Details</label>
-                        <textarea
-                            name="details"
-                            value={formData.details}
-                            onChange={handleChange}
-                            rows="2"
-                            placeholder="TELL US ABOUT THE VIBE, VENUE, AND REQUIREMENTS..."
-                            className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors h-24 resize-none uppercase tracking-wider leading-relaxed"
-                            required
-                        />
-                    </div>
-
-                    <div className="flex justify-end gap-6 pt-10 border-t border-white/5">
-                        <button
-                            type="button"
-                            onClick={onClose}
-                            disabled={isSubmitting}
-                            className="text-[10px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors disabled:opacity-50"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="bg-white text-black px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#e0e0e0] transition-colors disabled:opacity-50 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
-                        >
-                            {isSubmitting ? 'Processing...' : 'Submit'}
-                        </button>
-                    </div>
                     </form>
                 )}
             </div>
