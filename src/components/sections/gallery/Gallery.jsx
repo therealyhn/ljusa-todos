@@ -60,11 +60,7 @@ export default function Gallery() {
                     })),
                 }));
 
-                const allowedTitles = new Set(['Live Sets', 'Behind The Scenes']);
-                const filteredCategories = mappedCategories.filter((cat) =>
-                    allowedTitles.has((cat.title || '').trim())
-                );
-                setCategories(filteredCategories);
+                setCategories(mappedCategories);
             })
             .catch((err) => {
                 console.error('Gallery fetch error:', err);
@@ -122,7 +118,7 @@ export default function Gallery() {
                     breakpoints={{
                         0: { slidesPerView: 1 },
                         768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
+                        1024: { slidesPerView: 2 },
                     }}
                     className="mt-12 gallery-swiper"
                 >
