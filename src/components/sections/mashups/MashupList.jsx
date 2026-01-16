@@ -21,7 +21,10 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
                 <span className="flex-1">Title</span>
             </div>
 
-            <div className="flex-1 border-y border-white/10 overflow-y-auto pr-2 custom-scrollbar">
+            <div
+                className="flex-1 border-y border-white/10 overflow-y-auto pr-2 custom-scrollbar overscroll-contain touch-pan-y"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+            >
                 {tracks.map((track, index) => {
                     const isActive = index === currentIndex;
                     // Focus logic: if something is hovered, dim others. If nothing hovered, all normal.
@@ -46,11 +49,11 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
                             </span>
 
                             {/* Track Info */}
-                            <div className="flex-1 flex flex-col gap-1 pr-4">
-                                <span className={`text-base md:text-lg uppercase tracking-tight font-bold transition-all duration-300 ${isActive ? 'text-white pl-2' : 'text-white/80 group-hover:text-white group-hover:pl-2'}`}>
+                            <div className="flex-1 flex flex-col gap-0.5 pr-4">
+                                <span className={`text-[15px] md:text-base uppercase tracking-tight font-bold transition-all duration-300 ${isActive ? 'text-white pl-2' : 'text-white/80 group-hover:text-white group-hover:pl-2'}`}>
                                     {track.title}
                                 </span>
-                                <span className={`text-[10px] uppercase tracking-widest transition-all duration-300 ${isActive ? 'text-secondary pl-2' : 'text-secondary/60 group-hover:pl-2'}`}>
+                                <span className={`text-[9px] uppercase tracking-[0.2em] font-mono transition-all duration-300 ${isActive ? 'text-secondary/80 pl-2' : 'text-secondary/40 group-hover:pl-2'}`}>
                                     {track.artist}
                                 </span>
                             </div>
