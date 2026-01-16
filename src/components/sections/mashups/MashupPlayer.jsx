@@ -111,14 +111,14 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                     <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_0%,transparent_70%)]" />
 
                     {/* Top Status Bar */}
-                    <div className="flex justify-between items-start mb-10 relative z-10">
+                    <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between md:items-start mb-10 relative z-10">
                         <div className="flex items-center gap-3">
                             <div className="relative">
-                                <div className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-white shadow-[0_0_12px_rgba(255,255,255,0.8)]' : 'bg-white/20'}`} />
+                                <div className={`w-2 h-2 rounded-full ${isPlaying ? 'bg-green-500 shadow-[0_0_12px_rgba(255,255,255,0.8)]' : 'bg-white/20'}`} />
                                 {isPlaying && <div className="absolute inset-0 w-2 h-2 rounded-full bg-white animate-ping opacity-40" />}
                             </div>
                             <div className="flex flex-col">
-                                <span className={`text-[9px] uppercase tracking-[0.2em] font-mono leading-none ${isPlaying ? 'text-white' : 'text-white/30'}`}>
+                                <span className={`text-[9px] uppercase tracking-[0.2em] font-mono leading-none ${isPlaying ? 'text-green-500' : 'text-white/30'}`}>
                                     {isPlaying ? 'System Active' : 'Standby Mode'}
                                 </span>
                                 <span className="text-[8px] text-white/20 font-mono tracking-widest mt-1">REF: XTY </span>
@@ -138,17 +138,17 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                     </div>
 
                     {/* Main Display: Title & Meta */}
-                    <div className="mb-12 relative z-10">
-                        <div className="flex items-baseline gap-2 mb-2">
+                    <div className="mb-12 relative z-10 text-center lg:text-left">
+                        <div className="flex items-baseline gap-2 mb-2 justify-center lg:justify-start">
                             <span className="text-[10px] font-mono text-white/20">NOW_PLAYING:</span>
-                            <div className="h-px flex-1 bg-white/10" />
+                            <div className="h-px w-12 bg-white/10 lg:flex-1" />
                         </div>
 
                         <h3 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter leading-[0.85] mb-4">
                             {track.title}
                         </h3>
 
-                        <div className="flex flex-wrap items-center gap-4">
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
                             <p className="text-xs text-white/60 uppercase tracking-[0.2em] font-mono">
                                 {track.artist}
                             </p>
@@ -184,7 +184,7 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                                 </div>
                             ))}
                         </div>
-                        <div className="ml-8 flex flex-col justify-between h-full py-1 text-right">
+                        <div className="hidden md:flex ml-8 flex-col justify-between h-full py-1 text-right">
                             <span className="text-[10px] font-mono text-white/40 tracking-tighter">-6db</span>
                             <span className="text-[10px] font-mono text-white/40 tracking-tighter">-12db</span>
                             <span className="text-[10px] font-mono text-white/20 tracking-tighter">-∞</span>
@@ -262,7 +262,7 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                         {/* Volume HUD */}
                         <div className="group/volHUD relative h-20 flex flex-col justify-center items-center md:items-end min-w-0">
                             {/* Volume Info (Always visible) */}
-                            <div className="flex flex-col items-end gap-1.5 cursor-pointer">
+                            <div className="flex flex-col items-center md:items-end gap-1.5 cursor-pointer">
                                 <div className="flex items-center gap-2 mb-1">
                                     <span className="text-[9px] font-mono text-white/40 tracking-widest uppercase">Gain:</span>
                                     <span className="text-[9px] font-mono text-white tracking-widest">{Math.round(volume * 100)}%</span>

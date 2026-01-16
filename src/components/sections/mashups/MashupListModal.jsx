@@ -26,19 +26,19 @@ export default function MashupListModal({ isOpen, onClose, tracks, currentIndex,
                 <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.01)_0%,transparent_70%)]" />
 
                 {/* Header */}
-                <div className="flex items-center justify-between px-6 py-8 border-b border-white/10 relative z-10 bg-[#080808]/50">
-                    <div className="flex flex-col gap-1">
+                <div className="flex items-center justify-between px-6 py-6 border-b border-white/10 relative z-10 bg-[#080808]/50">
+                    <div className="flex flex-col items-start gap-1 text-left">
                         <div className="flex items-center gap-2">
                             <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
                             <p className="text-secondary/60 text-[9px] uppercase tracking-[0.4em] font-mono leading-none">Reference: XTY WORK</p>
                         </div>
-                        <h3 className="text-3xl font-heading font-bold text-white uppercase tracking-tighter leading-none mt-2">
-                            Mashup & Edits Archive
+                        <h3 className="text-2xl md:text-3xl font-heading font-bold text-white uppercase tracking-tighter leading-none mt-1">
+                            Mashups & Edits Archive
                         </h3>
                     </div>
 
                     <button
-                        className="group/close relative w-12 h-12 flex items-center justify-center border border-white/10 hover:border-white/30 transition-all rounded-full overflow-hidden"
+                        className="group/close relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-white/10 hover:border-white/30 transition-all rounded-full overflow-hidden shrink-0"
                         onClick={onClose}
                         aria-label="Close archive"
                     >

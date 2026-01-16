@@ -16,7 +16,7 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
             className="w-full flex flex-col min-h-0"
             onMouseLeave={() => setHoveredIndex(null)}
         >
-            <div className="flex pb-4 mb-4 text-[10px] uppercase tracking-widest text-secondary/30 font-medium px-4">
+            <div className="hidden md:flex pb-4 mb-4 text-[10px] uppercase tracking-widest text-secondary/30 font-medium px-4">
                 <span className="w-12">No.</span>
                 <span className="flex-1">Title</span>
             </div>
@@ -49,11 +49,11 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
                             </span>
 
                             {/* Track Info */}
-                            <div className="flex-1 flex flex-col gap-0.5 pr-4">
-                                <span className={`text-[15px] md:text-base uppercase tracking-tight font-bold transition-all duration-300 ${isActive ? 'text-white pl-2' : 'text-white/80 group-hover:text-white group-hover:pl-2'}`}>
+                            <div className="flex-1 flex flex-col gap-1 pr-4">
+                                <span className={`text-base md:text-lg uppercase tracking-tight font-bold transition-all duration-300 ${isActive ? 'text-white pl-2' : 'text-white/80 group-hover:text-white group-hover:pl-2'}`}>
                                     {track.title}
                                 </span>
-                                <span className={`text-[9px] uppercase tracking-[0.2em] font-mono transition-all duration-300 ${isActive ? 'text-secondary/80 pl-2' : 'text-secondary/40 group-hover:pl-2'}`}>
+                                <span className={`text-[10px] uppercase tracking-widest transition-all duration-300 ${isActive ? 'text-secondary pl-2' : 'text-secondary/60 group-hover:pl-2'}`}>
                                     {track.artist}
                                 </span>
                             </div>

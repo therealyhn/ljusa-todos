@@ -69,7 +69,7 @@ export default function Mashups() {
             <Container className="relative z-10 lg:h-full">
                 <div className="flex flex-col lg:h-full lg:flex-row gap-12 lg:gap-24">
                     {/* Left Side: Sticky Title & Player */}
-                    <div className="lg:w-[40%] lg:sticky lg:top-10 self-start space-y-8">
+                    <div className="lg:w-[40%] lg:sticky lg:top-10 self-center space-y-8 items-center text-center lg:items-start lg:text-left">
                         <div>
                             <p className="text-secondary/60 text-[10px] uppercase tracking-[0.4em] mb-4 pl-1">Music Library</p>
                             <h2 className="text-6xl md:text-7xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.9]">

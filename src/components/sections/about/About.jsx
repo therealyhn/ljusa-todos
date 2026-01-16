@@ -15,7 +15,7 @@ const About = () => {
         <section id="about" className="py-24 md:py-40 bg-black relative overflow-hidden">
 
             <Container className="relative z-10">
-                <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 items-center">
 
                     {/* Left: Asymmetric Imagery */}
                     <div className="lg:col-span-6 relative">
@@ -52,7 +52,7 @@ const About = () => {
                     <div className="lg:col-span-6 space-y-10">
                         <div className="space-y-4 animate__animated animate__fadeInRight">
                             <span className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-black block">Behind the Sound</span>
-                            <h2 className="text-5xl md:text-7xl font-heading font-black tracking-tighter text-white leading-[0.9] uppercase italic">
+                            <h2 className="text-4xl md:text-7xl font-heading font-black tracking-tighter text-white leading-[0.9] uppercase italic">
                                 {data.heading} <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white/40 to-white/5">{data.subheading}</span>
                             </h2>

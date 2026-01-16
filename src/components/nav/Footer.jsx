@@ -20,12 +20,12 @@ export default function Footer() {
             <Container className="relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
                     {/* Brand Section */}
-                    <div className="md:col-span-4 flex flex-col items-start gap-6">
-                        <img src={logo} alt="X T Y Logo" className="h-12 md:h-16 w-auto object-contain opacity-80" />
-                        <p className="text-secondary/80 text-sm leading-relaxed max-w-xs">
+                    <div className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left gap-6">
+                        <img src={logo} alt="X T Y Logo" className="h-14 md:h-16 w-auto object-contain opacity-80" />
+                        <p className="text-secondary/80 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
                             Elevating the night through a unique blend of sound, visuals, and premium energy.
                         </p>
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 justify-center md:justify-start">
                             <a href="https://www.instagram.com/xty.music/" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-2">
                                 <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all duration-300">
                                     <span className="sr-only">XTY Instagram</span>
@@ -53,7 +53,7 @@ export default function Footer() {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="md:col-span-2 flex flex-col gap-6">
+                    <div className="md:col-span-2 flex flex-col items-center md:items-start gap-6">
                         <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold text-white/60">Navigation</h4>
                         <ul className="flex flex-col gap-3">
                             <li><a href="#about" className="text-white/60 hover:text-white text-sm transition-all duration-300 hover:translate-x-1 inline-block">About</a></li>
@@ -64,7 +64,7 @@ export default function Footer() {
                     </div>
 
                     {/* Booking */}
-                    <div className="md:col-span-3 flex flex-col gap-6">
+                    <div className="md:col-span-3 flex flex-col items-center md:items-start gap-6">
                         <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold text-white/60">Inquiries</h4>
                         <ul className="flex flex-col gap-3">
                             <li className="text-sm text-white/40 font-medium">Contact for booking:</li>
@@ -78,10 +78,10 @@ export default function Footer() {
                     </div>
 
                     {/* Scroll to Top */}
-                    <div className="md:col-span-3 flex md:justify-end items-start mt-8 md:mt-0">
+                    <div className="md:col-span-3 flex justify-center md:justify-end items-start mt-8 md:mt-0">
                         <button
                             onClick={scrollToTop}
-                            className="group flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white transition-all duration-300"
+                            className="group flex flex-col md:flex-row items-center gap-4 text-[10px] uppercase tracking-[0.3em] text-white/40 hover:text-white transition-all duration-300"
                         >
                             <span>Back to top</span>
                             <div className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center group-hover:border-white/40 transition-all">
@@ -94,10 +94,10 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] text-white/40">
+                <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.2em] text-white/40 text-center md:text-left">
                     <p>© {new Date().getFullYear()} X T Y. ALL RIGHTS RESERVED.</p>
-                    <p>DESIGNED & DEVELOPED BY <a href="https://jovanljusic.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">Jovan Ljusic (YHN)</a></p>
-                    <div className="flex gap-8">
+                    <p>DESIGNED & DEVELOPED BY <br className="md:hidden" /> <a href="https://jovanljusic.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">Jovan Ljusic (YHN)</a></p>
+                    <div className="flex flex-wrap justify-center gap-8">
                         <button onClick={() => setLegalType('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
                         <button onClick={() => setLegalType('terms')} className="hover:text-white transition-colors">Terms of Service</button>
                     </div>
