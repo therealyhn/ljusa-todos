@@ -60,7 +60,11 @@ export default function Gallery() {
                     })),
                 }));
 
-                setCategories(mappedCategories);
+                const allowedTitles = new Set(['Live Sets', 'Behind The Scenes']);
+                const filteredCategories = mappedCategories.filter((cat) =>
+                    allowedTitles.has((cat.title || '').trim())
+                );
+                setCategories(filteredCategories);
             })
             .catch((err) => {
                 console.error('Gallery fetch error:', err);
