@@ -11,7 +11,7 @@ export default function Booking() {
             title: 'Club / Bar',
             description: 'Intense energy and driving rhythms designed for peak-time dancefloors.',
             duration: '3 - 6 Hours',
-            priceRange: '200 - 400€'
+            priceRange: '300 - 500€'
         },
         {
             _id: 'festival',
