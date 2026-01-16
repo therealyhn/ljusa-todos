@@ -60,30 +60,34 @@ export default function Mashups() {
     };
 
     return (
-        <section id="mashups" className="md:min-h-screen bg-black md:py-24 py-10 relative overflow-hidden">
+        <section id="mashups" className="h-screen bg-black py-16 lg:py-20 relative overflow-hidden">
             {/* Ambient Background */}
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
-            <Container className="relative z-10">
-                <div className="text-center mb-16">
-                    <h2 className="text-5xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90">
-                        Mashups
-                    </h2>
-                    <div className="h-1 w-20 bg-white/20 mx-auto mt-6 mb-6"></div>
-                    <p className="max-w-xl mx-auto text-secondary text-sm uppercase tracking-widest">
-                        Exclusive edits & bootlegs for the dancefloor.
-                    </p>
-                </div>
+            <Container className="relative z-10 h-full">
+                <div className="flex h-full flex-col lg:flex-row gap-12 lg:gap-24">
+                    {/* Left Side: Sticky Title & Player */}
+                    <div className="lg:w-[40%] lg:sticky lg:top-10 self-start space-y-8">
+                        <div>
+                            <p className="text-secondary/60 text-[10px] uppercase tracking-[0.4em] mb-4 pl-1">Music Library</p>
+                            <h2 className="text-6xl md:text-7xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.9]">
+                                Mashups<br />& Edits
+                            </h2>
+                        </div>
+                        <div className="hidden lg:block h-px w-20 bg-white/10" />
 
-                <div className="grid gap-8 lg:gap-12 lg:grid-cols-[1fr_1fr] items-start relative">
-                    <div className="lg:sticky lg:top-24 z-20 bg-black/50 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none -mx-4 px-4 py-6 lg:p-0 border-b border-white/10 lg:border-none">
-                        <MashupPlayer
-                            track={currentTrack}
-                            onNext={handleNext}
-                            onPrev={handlePrev}
-                        />
+                        {/* Player Component */}
+                        <div>
+                            <MashupPlayer
+                                track={currentTrack}
+                                onNext={handleNext}
+                                onPrev={handlePrev}
+                            />
+                        </div>
                     </div>
-                    <div className="pt-0 lg:pt-4 px-0 md:px-0 pb-12">
+
+                    {/* Right Side: Scrollable List */}
+                    <div className="lg:w-[60%] flex flex-col pt-4 min-h-0">
                         <MashupList
                             tracks={mashups}
                             currentIndex={currentIndex}
