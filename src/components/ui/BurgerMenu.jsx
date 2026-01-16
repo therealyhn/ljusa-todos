@@ -73,17 +73,33 @@ const BurgerMenu = () => {
 
                     <div className="mt-8 space-y-8">
                         {[
-                            { name: 'YHN', ig: 'https://instagram.com/therealyhn' },
-                            { name: 'TODOS', ig: 'https://instagram.com/milos.todosijevic' }
-                        ].map((artist, i) => (
+                            {
+                                name: 'XTY',
+                                links: [
+                                    { label: 'Instagram', href: 'https://www.instagram.com/xty.music/' },
+                                    { label: 'YouTube', href: 'https://www.youtube.com/@xty-music' },
+                                    { label: 'Email', href: 'mailto:booking@xty-music.com' },
+                                ],
+                            },
+                        ].map((group, i) => (
                             <div
-                                key={artist.name}
+                                key={group.name}
                                 className={`animate__animated ${isOpen ? 'animate__fadeInUp' : 'animate__fadeOutDown animate__faster'}`}
                                 style={{ animationDelay: isOpen ? `${0.6 + (i * 0.1)}s` : '0s' }}
                             >
-                                <p className="text-lg uppercase tracking-widest text-secondary/70 mb-3">{artist.name}</p>
+                                <p className="text-lg uppercase tracking-widest text-secondary/70 mb-3">{group.name}</p>
                                 <div className="flex flex-col gap-3">
-                                    <a href={artist.ig} target="_blank" rel="noopener noreferrer" className="text-sm text-white/80 hover:text-white transition-colors">Instagram</a>
+                                    {group.links.map((link) => (
+                                        <a
+                                            key={link.label}
+                                            href={link.href}
+                                            target={link.href.startsWith('http') ? '_blank' : undefined}
+                                            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                            className="text-sm text-white/80 hover:text-white transition-colors"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ))}
                                 </div>
                             </div>
                         ))}
