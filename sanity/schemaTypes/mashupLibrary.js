@@ -20,6 +20,13 @@ export default {
                         { name: 'title', title: 'Title', type: 'string' },
                         { name: 'artist', title: 'Artist', type: 'string' },
                         {
+                            name: 'order',
+                            title: 'Order',
+                            type: 'number',
+                            initialValue: 0,
+                            description: 'Kada ubacujes nov Mashup, uvek stavljaj broj 1 da bi bio prvi',
+                        },
+                        {
                             name: 'audioFile',
                             title: 'Audio File',
                             type: 'file',

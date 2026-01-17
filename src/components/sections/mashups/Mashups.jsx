@@ -20,6 +20,7 @@ export default function Mashups() {
                     _key,
                     title,
                     artist,
+                    order,
                     audioFile{
                         asset->{
                             url
@@ -31,7 +32,19 @@ export default function Mashups() {
             }`)
             .then((data) => {
                 if (!isMounted) return;
-                const mapped = (data?.items || []).map((item) => ({
+                const items = data?.items || [];
+
+                // Sort by order ascending, then by index descending (later added comes first)
+                const sortedItems = items
+                    .map((item, index) => ({ ...item, originalIndex: index }))
+                    .sort((a, b) => {
+                        const orderA = a.order ?? 0;
+                        const orderB = b.order ?? 0;
+                        if (orderA !== orderB) return orderA - orderB;
+                        return b.originalIndex - a.originalIndex;
+                    });
+
+                const mapped = sortedItems.map((item) => ({
                     id: item._key,
                     title: item.title,
                     artist: item.artist || 'LJUSA x TODOS',
