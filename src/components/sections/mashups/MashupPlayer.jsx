@@ -121,7 +121,7 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
     }
 
     return (
-        <div className="relative group/player select-none">
+        <div className="relative group/player select-none w-full max-w-[420px] mx-auto md:max-w-none">
             {/* Main Controller Frame */}
             <div className="bg-[#050505] border-[1.5px] border-white/10 p-1 lg:p-1.5 overflow-hidden shadow-2xl">
 
