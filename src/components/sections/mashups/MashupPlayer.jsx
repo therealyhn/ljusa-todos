@@ -9,11 +9,13 @@ const formatTime = (time) => {
 
 export default function MashupPlayer({ track, onNext, onPrev }) {
     const audioRef = useRef(null);
+    const volumeRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [volume, setVolume] = useState(1);
+    const [showVolume, setShowVolume] = useState(false);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -61,6 +63,25 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
         }
     }, [volume]);
 
+    // Close volume popup on outside click
+    useEffect(() => {
+        if (!showVolume) return;
+
+        const handleOutside = (event) => {
+            if (volumeRef.current && !volumeRef.current.contains(event.target)) {
+                setShowVolume(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleOutside);
+        document.addEventListener('touchstart', handleOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleOutside);
+            document.removeEventListener('touchstart', handleOutside);
+        };
+    }, [showVolume]);
+
     const togglePlay = () => {
         const audio = audioRef.current;
         if (!audio || !track?.src) return;
@@ -87,6 +108,22 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
         const rect = e.currentTarget.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const newVolume = Math.min(Math.max(clickX / rect.width, 0), 1);
+        setVolume(newVolume);
+    };
+
+    const handleSeekPointer = (e) => {
+        const audio = audioRef.current;
+        if (!audio || !duration) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clampedX = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+        const newTime = (clampedX / rect.width) * duration;
+        audio.currentTime = newTime;
+    };
+
+    const handleVolumePointer = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clampedY = Math.min(Math.max(e.clientY - rect.top, 0), rect.height);
+        const newVolume = Math.min(Math.max(1 - (clampedY / rect.height), 0), 1);
         setVolume(newVolume);
     };
 
@@ -196,6 +233,14 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                         <div
                             className="h-10 flex flex-col justify-center cursor-pointer group/seek"
                             onClick={handleSeek}
+                            onPointerDown={(e) => {
+                                e.currentTarget.setPointerCapture(e.pointerId);
+                                handleSeekPointer(e);
+                            }}
+                            onPointerMove={(e) => {
+                                if (e.buttons === 1) handleSeekPointer(e);
+                            }}
+                            onPointerUp={(e) => e.currentTarget.releasePointerCapture(e.pointerId)}
                         >
                             {/* Time Display */}
                             <div className="flex justify-between text-[11px] font-mono tracking-[0.2em] mb-3 transition-colors group-hover/seek:text-white">
@@ -260,9 +305,15 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                         </div>
 
                         {/* Volume HUD */}
-                        <div className="group/volHUD relative h-20 flex flex-col justify-center items-center md:items-end min-w-0">
+                        <div ref={volumeRef} className="relative h-20 flex flex-col justify-center items-center md:items-end min-w-0">
                             {/* Volume Info (Always visible) */}
-                            <div className="flex flex-col items-center md:items-end gap-1.5 cursor-pointer">
+                            <button
+                                type="button"
+                                className="flex flex-col items-center md:items-end gap-1.5 cursor-pointer rounded-xl px-3 py-2 hover:bg-white/5 transition"
+                                onClick={() => setShowVolume((prev) => !prev)}
+                                aria-expanded={showVolume}
+                                aria-label="Toggle volume control"
+                            >
                                 <div className="flex items-center gap-2 mb-1">
                                     <span className="text-[9px] font-mono text-white/40 tracking-widest uppercase">Gain:</span>
                                     <span className="text-[9px] font-mono text-white tracking-widest">{Math.round(volume * 100)}%</span>
@@ -275,11 +326,13 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                                     />
                                 </div>
                                 <span className="text-[12px] font-mono tracking-widest text-white/20 mt-1 uppercase">VOLUME</span>
-                            </div>
+                            </button>
 
-                            {/* Volume Slider Popup (Hover) */}
-                            <div className="absolute bottom-[calc(100%-10px)] right-0 mb-4 opacity-0 group-hover/volHUD:opacity-100 pointer-events-none group-hover/volHUD:pointer-events-auto transition-all duration-300 translate-y-2 group-hover/volHUD:translate-y-0">
-                                <div className="bg-[#0a0a0a] border border-white/10 p-4 shadow-2xl backdrop-blur-md">
+                            {/* Volume Slider Popup (Click) */}
+                            <div
+                                className={`absolute bottom-[calc(100%-10px)] right-0 mb-4 transition-all duration-300 ${showVolume ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-2'}`}
+                            >
+                                <div className="bg-[#0a0a0a] border border-white/10 p-4 shadow-2xl backdrop-blur-md rounded-xl">
                                     <div
                                         className="h-32 w-8 flex flex-col items-center justify-end cursor-pointer group/vslider"
                                         onClick={(e) => {
@@ -288,6 +341,14 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                                             const newVolume = Math.min(Math.max(1 - (clickY / rect.height), 0), 1);
                                             setVolume(newVolume);
                                         }}
+                                        onPointerDown={(e) => {
+                                            e.currentTarget.setPointerCapture(e.pointerId);
+                                            handleVolumePointer(e);
+                                        }}
+                                        onPointerMove={(e) => {
+                                            if (e.buttons === 1) handleVolumePointer(e);
+                                        }}
+                                        onPointerUp={(e) => e.currentTarget.releasePointerCapture(e.pointerId)}
                                     >
                                         <div className="w-[2px] h-full bg-white/5 relative">
                                             <div
