@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import useEscapeKey from '../../../hooks/useEscapeKey';
+import useScrollLock from '../../../hooks/useScrollLock';
 import "animate.css";
 
 const getEmbedUrl = (url, platform) => {
@@ -17,13 +19,8 @@ const getEmbedUrl = (url, platform) => {
 };
 
 export default function MixModal({ mix, onClose }) {
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') onClose();
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [onClose]);
+    useEscapeKey(onClose, Boolean(mix));
+    useScrollLock(Boolean(mix));
 
     if (!mix) return null;
 

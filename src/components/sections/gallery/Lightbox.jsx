@@ -1,21 +1,23 @@
 import { useEffect } from "react";
+import useEscapeKey from "../../../hooks/useEscapeKey";
+import useScrollLock from "../../../hooks/useScrollLock";
 import "animate.css";
 
 export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }) {
     const shouldShow = items && items.length > 0 && activeIndex != null;
 
+    useEscapeKey(onClose, shouldShow);
+    useScrollLock(shouldShow);
+
     useEffect(() => {
         if (!shouldShow) return;
-
         const handleKey = (e) => {
-            if (e.key === "Escape") onClose();
             if (e.key === "ArrowLeft") onPrev();
             if (e.key === "ArrowRight") onNext();
         };
-
         window.addEventListener("keydown", handleKey);
         return () => window.removeEventListener("keydown", handleKey);
-    }, [shouldShow, onClose, onPrev, onNext]);
+    }, [shouldShow, onPrev, onNext]);
 
     if (!shouldShow) return null;
 

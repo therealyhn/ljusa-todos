@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import useEscapeKey from '../../../hooks/useEscapeKey';
+import useScrollLock from '../../../hooks/useScrollLock';
 import Button from '../../ui/Button';
 import "animate.css";
 
@@ -28,14 +30,11 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
     useEffect(() => {
         if (!isOpen) {
             setStatus({ type: '', message: '' });
-            return;
         }
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') onClose();
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isOpen, onClose]);
+    }, [isOpen]);
+
+    useEscapeKey(onClose, isOpen);
+    useScrollLock(isOpen);
 
     if (!isOpen) return null;
 

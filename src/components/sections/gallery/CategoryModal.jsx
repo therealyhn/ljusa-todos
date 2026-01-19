@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import useEscapeKey from "../../../hooks/useEscapeKey";
+import useScrollLock from "../../../hooks/useScrollLock";
 import "animate.css";
 
 export default function CategoryModal({
@@ -7,14 +9,8 @@ export default function CategoryModal({
     onClose,
     onItemClick,
 }) {
-    // Logic for closing on ESC
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === "Escape") onClose();
-        };
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [onClose]);
+    useEscapeKey(onClose, Boolean(category));
+    useScrollLock(Boolean(category));
 
     if (!category) return null;
 

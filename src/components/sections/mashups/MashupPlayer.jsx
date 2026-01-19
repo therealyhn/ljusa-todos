@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
 const formatTime = (time) => {
     if (!time || Number.isNaN(time)) return '0:00';
@@ -64,23 +65,7 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
     }, [volume]);
 
     // Close volume popup on outside click
-    useEffect(() => {
-        if (!showVolume) return;
-
-        const handleOutside = (event) => {
-            if (volumeRef.current && !volumeRef.current.contains(event.target)) {
-                setShowVolume(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleOutside);
-        document.addEventListener('touchstart', handleOutside);
-
-        return () => {
-            document.removeEventListener('mousedown', handleOutside);
-            document.removeEventListener('touchstart', handleOutside);
-        };
-    }, [showVolume]);
+    useOutsideClick(volumeRef, () => setShowVolume(false), showVolume);
 
     const togglePlay = () => {
         const audio = audioRef.current;

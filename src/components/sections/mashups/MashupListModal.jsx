@@ -1,15 +1,8 @@
-import { useEffect } from 'react';
 import MashupList from './MashupList';
+import useScrollLock from '../../../hooks/useScrollLock';
 
 export default function MashupListModal({ isOpen, onClose, tracks, currentIndex, onSelect }) {
-    useEffect(() => {
-        if (!isOpen) return undefined;
-        const originalOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = originalOverflow || '';
-        };
-    }, [isOpen]);
+    useScrollLock(isOpen);
 
     if (!isOpen) return null;
 

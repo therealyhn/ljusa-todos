@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
+import useEscapeKey from '../../hooks/useEscapeKey';
+import useScrollLock from '../../hooks/useScrollLock';
 import "animate.css";
 
 export default function LegalModal({ isOpen, type, onClose }) {
-    useEffect(() => {
-        if (!isOpen) return;
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') onClose();
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isOpen, onClose]);
+    useEscapeKey(onClose, isOpen);
+    useScrollLock(isOpen);
 
     if (!isOpen) return null;
 
