@@ -15,14 +15,14 @@ export default function CategoryModal({
     if (!category) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-sm animate__animated animate__fadeIn animate__faster">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-sm">
 
             {/* CLICK OUTSIDE TO CLOSE */}
             <div className="absolute inset-0" onClick={onClose} />
 
             {/* --- WINDOW / CARD VIEW --- */}
             <div
-                className="relative w-full max-w-6xl max-h-[90vh] bg-surface rounded-sm overflow-hidden shadow-2xl flex flex-col animate__animated animate__zoomIn animate__faster border border-white/10"
+                className="relative w-full max-w-6xl max-h-[90vh] bg-surface rounded-sm overflow-hidden shadow-2xl flex flex-col border border-white/10"
                 onClick={(e) => e.stopPropagation()}
             >
 
