@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import Container from '../ui/Container';
 import LegalModal from '../ui/LegalModal';
 import logo from '../../assets/logo.png';
@@ -21,7 +21,13 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
                     {/* Brand Section */}
                     <div className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left gap-6">
-                        <img src={logo} alt="X T Y Logo" className="h-14 md:h-16 w-auto object-contain opacity-80" />
+                        <img
+                            src={logo}
+                            alt="X T Y Logo"
+                            className="h-14 md:h-16 w-auto object-contain opacity-80"
+                            loading="lazy"
+                            decoding="async"
+                        />
                         <p className="text-secondary/80 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
                             Elevating the night through a unique blend of sound, visuals, and premium energy.
                         </p>
@@ -95,7 +101,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] uppercase tracking-[0.2em] text-white/40 text-center md:text-left">
-                    <p>© {new Date().getFullYear()} X T Y. ALL RIGHTS RESERVED.</p>
+                    <p>(c) {new Date().getFullYear()} X T Y. ALL RIGHTS RESERVED.</p>
                     <p>DESIGNED & DEVELOPED BY <br className="md:hidden" /> <a href="https://jovanljusic.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">Jovan Ljusic (YHN)</a></p>
                     <div className="flex flex-wrap justify-center gap-8">
                         <button onClick={() => setLegalType('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
@@ -112,3 +118,4 @@ export default function Footer() {
         </footer>
     );
 }
+

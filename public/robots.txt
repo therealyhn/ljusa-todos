@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Host: xty-music.com
+
+Sitemap: https://xty-music.com/sitemap.xml

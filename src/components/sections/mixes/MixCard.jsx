@@ -27,6 +27,7 @@ export default function MixCard({ mix, onOpen }) {
                         alt={mix.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
                         loading="lazy"
+                        decoding="async"
                     />
                 ) : mix.thumbnail ? (
                     <img
@@ -34,6 +35,7 @@ export default function MixCard({ mix, onOpen }) {
                         alt={mix.title}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
                         loading="lazy"
+                        decoding="async"
                     />
                 ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-black" />

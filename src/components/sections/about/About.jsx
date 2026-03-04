@@ -27,6 +27,8 @@ const About = () => {
                                         src={urlFor(data.imageFront).width(1200).url()}
                                         alt="LJUSA x TODOS Main"
                                         className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110 hover:scale-100"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 )}
                             </div>
@@ -38,6 +40,8 @@ const About = () => {
                                         src={urlFor(data.imageBack).width(600).url()}
                                         alt="LJUSA x TODOS Detail"
                                         className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 )}
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />

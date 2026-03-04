@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import Container from '../../ui/Container';
 import Button from '../../ui/Button';
 import BookingModal from './BookingModal';
@@ -48,13 +48,13 @@ export default function Booking() {
                             </h2>
                         </div>
                         <p className="text-secondary/70 text-sm uppercase tracking-widest max-w-[300px] leading-relaxed pl-1">
-                            Club, bar, or festival — select a format and send a request for a full B2B set.
+                            Club, bar, or festival - select a format and send a request for a full B2B set.
                         </p>
 
                         <div className="hidden lg:block h-px w-20 bg-white/10 mt-12 mb-8" />
 
                         <div className="hidden lg:block text-xs uppercase tracking-[0.3em] text-secondary/50 font-medium pl-1">
-                            Tailored Energy • Custom Edits
+                            Tailored Energy - Custom Edits
                         </div>
                     </div>
 
@@ -139,3 +139,4 @@ export default function Booking() {
         </section>
     );
 }
+

@@ -46,6 +46,9 @@ const Hero = () => {
                                         src={urlFor(data.heroImage).width(800).url()}
                                         alt="X T Y Duo"
                                         className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-[2s]"
+                                        loading="eager"
+                                        decoding="async"
+                                        fetchPriority="high"
                                     />
                                 ) : (
                                     <div className="w-full h-full bg-surface flex items-center justify-center">

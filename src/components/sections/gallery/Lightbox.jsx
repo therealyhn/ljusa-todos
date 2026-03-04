@@ -78,6 +78,7 @@ export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }
                         src={current.full || current.image}
                         alt={current.alt || current.title}
                         className="max-w-full max-h-full object-contain drop-shadow-2xl shadow-black pointer-events-auto select-none"
+                        decoding="async"
                     />
                 )}
 

@@ -10,7 +10,14 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-20 animate__animated animate__fadeIn animate__slower">
                     {/* Logo */}
                     <a href="#" className="z-50 relative">
-                        <img src={logo} alt="Logo" className="w-auto h-12 md:h-16 object-contain" />
+                        <img
+                            src={logo}
+                            alt="Logo"
+                            className="w-auto h-12 md:h-16 object-contain"
+                            loading="eager"
+                            decoding="async"
+                            fetchPriority="high"
+                        />
                     </a>
 
                     {/* Desktop Nav */}

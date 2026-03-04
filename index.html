@@ -1,35 +1,116 @@
 <!doctype html>
-<html lang="en">
+<html lang="sr">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X T Y — Official Website</title>
+  <title>X T Y | Zvanicni sajt</title>
 
   <!-- SEO Meta Tags -->
   <meta name="description"
-    content="Official website of X T Y. Premium electronic music, custom mashups, and live performance bookings." />
+    content="Zvanicni sajt X T Y dua. Balkan hitovi u elektronskom fazonu i booking za nastupe." />
   <meta name="keywords"
-    content="XTY, YHN, TODOS, DJ Duo, Electronic Music, Mashups, Nightlife, Bookings, Jovan Ljusic, Milos Todosijevic" />
+    content="XTY, YHN, TODOS, DJ duo, elektronska muzika, mashup, nightlife, booking, nastupi, Jovan Ljusic, Milos Todosijevic" />
   <meta name="author" content="Jovan Ljusic (YHN)" />
+  <meta name="language" content="Serbian" />
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="canonical" href="https://xty-music.com/" />
+  <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+  <link rel="dns-prefetch" href="//cdn.sanity.io" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="X T Y" />
+  <meta property="og:locale" content="sr_RS" />
   <meta property="og:url" content="https://xty-music.com/" />
-  <meta property="og:title" content="X T Y — Official Website" />
-  <meta property="og:description" content="Premium electronic sound, custom mashups, and high-energy live sets." />
-  <meta property="og:image" content="/og-image.jpg" />
+  <meta property="og:title" content="X T Y | Zvanicni sajt" />
+  <meta property="og:description" content="Premijum elektronski zvuk, custom mashupovi i energicni live setovi." />
+  <meta property="og:image" content="https://xty-music.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="X T Y promo fotografija elektronskog dua" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:site" content="@xty_music" />
   <meta property="twitter:url" content="https://xty-music.com/" />
-  <meta property="twitter:title" content="X T Y — Official Website" />
-  <meta property="twitter:description" content="Premium electronic sound, custom mashups, and high-energy live sets." />
-  <meta property="twitter:image" content="/og-image.jpg" />
+  <meta property="twitter:title" content="X T Y | Zvanicni sajt" />
+  <meta property="twitter:description" content="Premijum elektronski zvuk, custom mashupovi i energicni live setovi." />
+  <meta property="twitter:image" content="https://xty-music.com/og-image.jpg" />
+  <meta property="twitter:image:alt" content="X T Y promo fotografija elektronskog dua" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://xty-music.com/#website",
+          "name": "X T Y",
+          "url": "https://xty-music.com/",
+          "description": "Zvanicni sajt X T Y dua sa mashupovima, mixevima, galerijom i bookingom.",
+          "inLanguage": "sr"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://xty-music.com/#webpage",
+          "url": "https://xty-music.com/",
+          "name": "X T Y | Zvanicni sajt",
+          "description": "Zvanicni sajt X T Y dua za elektronsku muziku, mashupove, mixeve i booking.",
+          "inLanguage": "sr",
+          "isPartOf": {
+            "@id": "https://xty-music.com/#website"
+          },
+          "about": {
+            "@id": "https://xty-music.com/#musicgroup"
+          }
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://xty-music.com/#musicgroup",
+          "name": "X T Y",
+          "url": "https://xty-music.com/",
+          "genre": "Elektronska muzika",
+          "inLanguage": "sr",
+          "areaServed": "RS",
+          "email": "booking@xty-music.com",
+          "image": "https://xty-music.com/og-image.jpg",
+          "mainEntityOfPage": {
+            "@id": "https://xty-music.com/#webpage"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "booking",
+              "email": "booking@xty-music.com",
+              "availableLanguage": [
+                "sr",
+                "en"
+              ],
+              "areaServed": "RS"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/xty.music/",
+            "https://www.youtube.com/@xty-music"
+          ]
+        }
+      ]
+    }
+  </script>
 </head>
 
 <body class="bg-background text-primary antialiased font-sans selection:bg-accent selection:text-white">
+  <noscript>
+    <h1>X T Y Zvanicni sajt</h1>
+    <p>Elektronski duo. Mashupovi, mixevi, galerija i booking upiti.</p>
+    <p>Booking kontakt: <a href="mailto:booking@xty-music.com">booking@xty-music.com</a></p>
+  </noscript>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
