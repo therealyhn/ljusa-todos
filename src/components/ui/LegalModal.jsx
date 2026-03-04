@@ -11,44 +11,44 @@ export default function LegalModal({ isOpen, type, onClose }) {
 
     const content = {
         privacy: {
-            title: "Privacy Policy",
+            title: "Politika Privatnosti",
             sections: [
                 {
-                    h: "Information We Collect",
-                    p: "We only collect information that you voluntarily provide through our booking form, such as your name, email address, and event details."
+                    h: "Informacije koje prikupljamo",
+                    p: "Prikupljamo isključivo informacije koje nam dobrovoljno dostavite putem naše booking forme, kao što su vaše ime, e-mail adresa i detalji o događaju."
                 },
                 {
-                    h: "How We Use Your Information",
-                    p: "Your information is used solely to respond to your booking inquiries and coordinate event details. We do not sell or share your personal data with third parties."
+                    h: "Kako koristimo vaše informacije",
+                    p: "Vaše informacije koristimo isključivo za odgovaranje na vaše upite za rezervaciju i koordinaciju detalja događaja. Ne prodajemo niti delimo vaše lične podatke sa trećim stranama."
                 },
                 {
-                    h: "Data Security",
-                    p: "We implement standard security measures to protect your personal information. However, no method of transmission over the internet is 100% secure."
+                    h: "Sigurnost podataka",
+                    p: "Preduzimamo standardne mere bezbednosti kako bismo zaštitili vaše lične podatke. Međutim, imajte na umu da nijedan metod prenosa preko interneta nije 100% siguran."
                 },
                 {
-                    h: "Cookies",
-                    p: "Our website may use essential cookies to improve your browsing experience. These do not track personal identification info."
+                    h: "Kolačići",
+                    p: "Naš sajt može koristiti osnovne kolačiće (cookies) radi poboljšanja vašeg korisničkog iskustva. Ovi kolačići ne prate lične identifikacione informacije."
                 }
             ]
         },
         terms: {
-            title: "Terms of Service",
+            title: "Uslovi Korišćenja",
             sections: [
                 {
-                    h: "Content Ownership",
-                    p: "All content on this website, including music, photos, and branding, is the property of X T Y (YHN & TODOS) and is protected by copyright laws."
+                    h: "Vlasništvo nad sadržajem",
+                    p: "Sav sadržaj na ovom sajtu, uključujući muziku, fotografije i brendiranje, vlasništvo je X T Y (YHN & TODOS) i zaštićen je zakonima o autorskim pravima."
                 },
                 {
-                    h: "Booking Requests",
-                    p: "Submitting a booking inquiry does not guarantee an engagement. All bookings are subject to availability and formal contract signing."
+                    h: "Zahtevi za rezervaciju",
+                    p: "Slanje upita za rezervaciju ne garantuje angažman. Sve rezervacije podležu dostupnosti i potpisivanju zvaničnog ugovora."
                 },
                 {
-                    h: "External Links",
-                    p: "We are not responsible for the content or privacy practices of external sites linked from our platform (e.g., SoundCloud, YouTube)."
+                    h: "Eksterni linkovi",
+                    p: "Nismo odgovorni za sadržaj ili prakse privatnosti eksternih sajtova linkovanih sa naše platforme (npr. SoundCloud, YouTube)."
                 },
                 {
-                    h: "Liability",
-                    p: "X T Y is not liable for any technical issues resulting from the use of this website."
+                    h: "Odgovornost",
+                    p: "X T Y nije odgovoran za bilo kakve tehničke probleme koji nastanu korišćenjem ovog sajta."
                 }
             ]
         }
@@ -66,7 +66,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
                 {/* Header */}
                 <div className="flex items-center justify-between px-8 py-6 border-b border-white/5">
                     <div>
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-secondary/60 font-bold">Legal Information</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-secondary/60 font-bold">Pravne Informacije</p>
                         <h3 className="mt-2 text-xl font-heading font-bold text-white uppercase tracking-tight">
                             {activeContent.title}
                         </h3>
@@ -97,7 +97,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
                         onClick={onClose}
                         className="bg-white text-black px-8 py-3 text-[10px] uppercase tracking-[0.2em] font-black hover:bg-[#e0e0e0] transition-colors shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                     >
-                        Close
+                        Zatvori
                     </button>
                 </div>
             </div>

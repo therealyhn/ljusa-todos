@@ -64,12 +64,12 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
             const result = await response.json();
 
             if (result.success) {
-                setStatus({ type: 'success', message: 'Request sent successfully! We will contact you soon.' });
+                setStatus({ type: 'success', message: 'Zahtev poslat, javljamo se uskoro!' });
                 setTimeout(() => {
                     onClose();
                 }, 3000);
             } else {
-                setStatus({ type: 'error', message: result.message || 'Something went wrong.' });
+                setStatus({ type: 'error', message: result.message || 'Doslo je do greske, pokusajte ponovo.' });
             }
         } catch (error) {
             setStatus({ type: 'error', message: 'Failed to send request. Please try again.' });
@@ -94,9 +94,9 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
             >
                 <div className="flex items-center justify-between px-8 py-6 border-b border-white/5">
                     <div>
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-secondary/60">Enquiry Form</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] text-secondary/60">Booking Forma</p>
                         <h3 className="mt-2 text-xl font-heading font-bold text-white uppercase tracking-tight">
-                            Booking Details
+                            Detalji
                         </h3>
                     </div>
                     <button
@@ -113,17 +113,17 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
                 {isSubmitted ? (
                     <div className="p-12 text-center">
                         <h4 className="text-2xl font-heading font-semibold text-white uppercase tracking-tight">
-                            Request Sent
+                            Zahtev poslat
                         </h4>
                         <p className="mt-4 text-secondary text-sm uppercase tracking-widest">
-                            We will contact you soon with availability.
+                            Javicemo se uskoro sa detaljima.
                         </p>
                         <button
                             type="button"
                             onClick={onClose}
                             className="mt-8 bg-white text-black px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#e0e0e0] transition-colors"
                         >
-                            Close
+                            Zatvori
                         </button>
                     </div>
                 ) : (
@@ -138,7 +138,7 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
                         )}
 
                         <div className="grid gap-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Type</label>
+                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Tip Eventa</label>
                             <div className="w-full bg-white/[0.02] border border-white/5 px-4 py-4 text-white/40 cursor-not-allowed text-[11px] uppercase tracking-[0.15em] font-medium">
                                 {formData.eventType}
                             </div>
@@ -146,27 +146,27 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
 
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="grid gap-3">
-                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Your Name</label>
+                                <label className="text-[14px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Ime</label>
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    placeholder="ENTER NAME"
-                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    placeholder="Unesi ime"
+                                    className="bg-transparent border-b italic border-white/10 px-0 py-3 text-white/10 text-sm focus:outline-none focus:border-white/40 transition-colors tracking-wider"
                                     required
                                 />
                             </div>
 
                             <div className="grid gap-3">
-                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Email Address</label>
+                                <label className="text-[14px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Email</label>
                                 <input
                                     type="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    placeholder="ENTER EMAIL"
-                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    placeholder="Unesi email"
+                                    className="bg-transparent border-b italic border-white/10 px-0 py-3 text-white/10 text-sm focus:outline-none focus:border-white/40 transition-colors tracking-wider"
                                     required
                                 />
                             </div>
@@ -174,40 +174,40 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
 
                         <div className="grid md:grid-cols-2 gap-8">
                             <div className="grid gap-3">
-                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Event Date</label>
+                                <label className="text-[14px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Datum Eventa</label>
                                 <input
                                     type="date"
                                     name="date"
                                     value={formData.date}
                                     onChange={handleChange}
-                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors italic tracking-wider"
                                     required
                                 />
                             </div>
 
                             <div className="grid gap-3">
-                                <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Set Duration</label>
+                                <label className="text-[14px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Vreme Trajanja</label>
                                 <input
                                     type="text"
                                     name="duration"
                                     value={formData.duration}
                                     onChange={handleChange}
-                                    placeholder="E.G. 3 HOURS"
-                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors uppercase tracking-wider"
+                                    placeholder="Na primer: 3 sata"
+                                    className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors italic tracking-wider"
                                     required
                                 />
                             </div>
                         </div>
 
                         <div className="grid gap-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Additional Details</label>
+                            <label className="text-[10px] uppercase tracking-[0.3em] text-secondary/50 font-bold">Dodatni Detalji</label>
                             <textarea
                                 name="details"
                                 value={formData.details}
                                 onChange={handleChange}
                                 rows="2"
-                                placeholder="TELL US ABOUT THE VIBE, VENUE, AND REQUIREMENTS..."
-                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors h-24 resize-none uppercase tracking-wider leading-relaxed"
+                                placeholder="Recite nam nesto o atmosferi, mestu i zahtevima..."
+                                className="bg-transparent border-b border-white/10 px-0 py-3 text-white text-sm focus:outline-none focus:border-white/40 transition-colors h-24 resize-none italic tracking-wider leading-relaxed"
                                 required
                             />
                         </div>
@@ -219,14 +219,14 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
                                 disabled={isSubmitting}
                                 className="text-[10px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors disabled:opacity-50"
                             >
-                                Cancel
+                                Otkazi
                             </button>
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
                                 className="bg-white text-black px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-black hover:bg-[#e0e0e0] transition-colors disabled:opacity-50 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                             >
-                                {isSubmitting ? 'Processing...' : 'Submit'}
+                                {isSubmitting ? 'Processing...' : 'Posalji'}
                             </button>
                         </div>
                     </form>

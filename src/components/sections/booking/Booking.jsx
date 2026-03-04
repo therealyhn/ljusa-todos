@@ -7,18 +7,18 @@ export default function Booking() {
     // Static options as requested
     const bookingOptions = [
         {
-            _id: 'club/bar',
-            title: 'Club / Bar',
-            description: 'Intense energy and driving rhythms designed for peak-time dancefloors.',
-            duration: '3 - 6 Hours',
-            priceRange: 'Price upon request'
+            _id: 'Klub/Kafic',
+            title: 'Klub / Kafic',
+            description: 'Intenzivna energija i ritmovi dizajnirani za vrhunac plesnog podijuma.',
+            duration: '3 - 6 Sati',
+            priceRange: 'Cena na upit'
         },
         {
             _id: 'festival',
             title: 'Festival',
-            description: 'High-impact performance showcasing signature sounds for large crowds.',
-            duration: '1 - 4 Hours',
-            priceRange: 'Price upon request'
+            description: 'Nastup sa energicnim setom i hitovima za veliku publiku.',
+            duration: '1 - 4 Sati',
+            priceRange: 'Cena na upit'
         }
     ];
 
@@ -42,19 +42,19 @@ export default function Booking() {
                     {/* Sticky Sidebar / Title Area */}
                     <div className="lg:w-1/3 lg:sticky lg:top-12 self-start space-y-8">
                         <div>
-                            <p className="text-secondary/60 text-[10px] uppercase tracking-[0.4em] mb-4 pl-1">B2B Booking</p>
+                            <p className="text-secondary/60 text-[10px] uppercase tracking-[0.4em] mb-4 pl-1">Booking</p>
                             <h2 className="text-6xl md:text-8xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.9]">
                                 Select<br />Format
                             </h2>
                         </div>
                         <p className="text-secondary/70 text-sm uppercase tracking-widest max-w-[300px] leading-relaxed pl-1">
-                            Club, bar, or festival - select a format and send a request for a full B2B set.
+                            Klub, kafic ili festvival - Izaberi event i bukiraj nas.
                         </p>
 
                         <div className="hidden lg:block h-px w-20 bg-white/10 mt-12 mb-8" />
 
                         <div className="hidden lg:block text-xs uppercase tracking-[0.3em] text-secondary/50 font-medium pl-1">
-                            Tailored Energy - Custom Edits
+                            Balkanski Mashupovi - Najbolji provod
                         </div>
                     </div>
 
@@ -116,7 +116,7 @@ export default function Booking() {
                                                 className="group/btn relative overflow-hidden bg-white/0 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-black transition-all duration-500 w-full md:w-auto"
                                             >
                                                 <span className="relative z-10 flex items-center justify-center gap-2">
-                                                    Request
+                                                    Book
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3 -rotate-45 group-hover/btn:rotate-0 transition-transform duration-300">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                                                     </svg>

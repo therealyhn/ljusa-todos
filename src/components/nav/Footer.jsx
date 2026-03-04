@@ -29,7 +29,7 @@ export default function Footer() {
                             decoding="async"
                         />
                         <p className="text-secondary/80 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-                            Elevating the night through a unique blend of sound, visuals, and premium energy.
+                            Uzdizanje noći kroz jedinstven spoj zvuka, balkanskih mashupova i vrhunske energije.
                         </p>
                         <div className="flex gap-6 justify-center md:justify-start">
                             <a href="https://www.instagram.com/xty.music/" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center gap-2">
@@ -104,8 +104,8 @@ export default function Footer() {
                     <p>(c) {new Date().getFullYear()} X T Y. ALL RIGHTS RESERVED.</p>
                     <p>DESIGNED & DEVELOPED BY <br className="md:hidden" /> <a href="https://jovanljusic.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors">Jovan Ljusic (YHN)</a></p>
                     <div className="flex flex-wrap justify-center gap-8">
-                        <button onClick={() => setLegalType('privacy')} className="hover:text-white transition-colors">Privacy Policy</button>
-                        <button onClick={() => setLegalType('terms')} className="hover:text-white transition-colors">Terms of Service</button>
+                        <button onClick={() => setLegalType('privacy')} className="hover:text-white uppercase tracking-widest transition-colors">Politika Privatnosti</button>
+                        <button onClick={() => setLegalType('terms')} className="hover:text-white uppercase tracking-widest transition-colors">Uslovi Korišćenja</button>
                     </div>
                 </div>
             </Container>
