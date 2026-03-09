@@ -34,7 +34,7 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
                         <div
                             key={track.id}
                             className={`group relative flex items-center py-6 px-4 border-b border-white/10 transition-all duration-300 cursor-pointer
-                                ${isDimmed ? 'opacity-30 blur-[1px]' : 'opacity-100'}
+                                ${isDimmed ? 'opacity-40' : 'opacity-100'}
                                 ${isActive ? 'bg-white/[0.03]' : 'hover:bg-white/[0.02]'}
                             `}
                             onMouseEnter={() => setHoveredIndex(index)}
