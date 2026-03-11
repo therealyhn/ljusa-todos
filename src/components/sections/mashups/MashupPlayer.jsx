@@ -267,7 +267,7 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                                         <path d="M19 5L5 19" />
                                     </svg>
                                 ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-10 h-10">
                                         <path d="M8 5v14l11-7z" />
                                     </svg>
                                 )}
