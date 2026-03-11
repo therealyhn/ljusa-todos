@@ -22,11 +22,20 @@ const Button = ({
     variant = 'primary',
     size = 'md',
     className = '',
-    as: Tag = 'button',
+    as = 'button',
     ...props
 }) => {
+    if (as === 'a') {
+        return (
+            <a
+                className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+                {...props}
+            />
+        );
+    }
+
     return (
-        <Tag
+        <button
             className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
             {...props}
         />

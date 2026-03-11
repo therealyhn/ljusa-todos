@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import useEscapeKey from '../../../hooks/useEscapeKey';
 import useScrollLock from '../../../hooks/useScrollLock';
-import Button from '../../ui/Button';
 import "animate.css";
 
 export default function BookingModal({ isOpen, selectedOption, onClose }) {
@@ -71,7 +70,7 @@ export default function BookingModal({ isOpen, selectedOption, onClose }) {
             } else {
                 setStatus({ type: 'error', message: result.message || 'Doslo je do greske, pokusajte ponovo.' });
             }
-        } catch (error) {
+        } catch {
             setStatus({ type: 'error', message: 'Failed to send request. Please try again.' });
         } finally {
             setIsSubmitting(false);

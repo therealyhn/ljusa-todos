@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Container from '../../ui/Container';
+import Button from '../../ui/Button';
 import CategoryCard from './CategoryCard';
 import CategoryModal from './CategoryModal';
+import GalleryCatalogModal from './GalleryCatalogModal';
 import Lightbox from './Lightbox';
 import { sanityClient, urlFor } from '../../../lib/sanityClient';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
 
-export default function Gallery() {
+export default function Gallery({ mode = 'preview', previewCount = 3 }) {
     const [categories, setCategories] = useState([]);
     const [activeCategory, setActiveCategory] = useState(null);
     const [activeImageIndex, setActiveImageIndex] = useState(null);
+    const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+
+    const isPreviewMode = mode === 'preview';
 
     useEffect(() => {
         let isMounted = true;
@@ -31,7 +34,7 @@ export default function Gallery() {
                                 url
                             }
                         },
-                        alt,
+                        alt
                     }
                 }`
             )
@@ -48,7 +51,6 @@ export default function Gallery() {
                     items: (cat.items || []).map((item, index) => ({
                         id: item._key || `${cat._id}-${index}`,
                         title: item.title,
-                        caption: item.caption,
                         thumb: item.image
                             ? urlFor(item.image).width(800).fit('max').quality(70).auto('format').url()
                             : null,
@@ -62,8 +64,8 @@ export default function Gallery() {
 
                 setCategories(mappedCategories);
             })
-            .catch((err) => {
-                console.error('Gallery fetch error:', err);
+            .catch((error) => {
+                console.error('Gallery fetch error:', error);
             });
 
         return () => {
@@ -72,6 +74,11 @@ export default function Gallery() {
     }, []);
 
     const itemsForActiveCategory = activeCategory ? activeCategory.items : [];
+    const previewCategories = useMemo(
+        () => categories.slice(0, previewCount),
+        [categories, previewCount]
+    );
+    const visibleCategories = isPreviewMode ? previewCategories : categories;
 
     const openCategory = (category) => {
         setActiveCategory(category);
@@ -83,8 +90,9 @@ export default function Gallery() {
         setActiveImageIndex(null);
     };
 
-    const closeImage = () => {
-        setActiveImageIndex(null);
+    const handleSelectFromCatalog = (category) => {
+        setIsCatalogOpen(false);
+        openCategory(category);
     };
 
     const handlePrevImage = () => {
@@ -98,40 +106,48 @@ export default function Gallery() {
     };
 
     return (
-        <section id="gallery" className="py-20 md:py-28 bg-surface">
-
+        <section id="gallery" className="bg-surface py-12 md:py-16">
             <Container>
-                <div className="text-center mb-10 md:mb-16">
-                    <h2 className="text-4xl sm:text-6xl md:text-8xl font-heading font-bold tracking-tighter text-white uppercase opacity-90 leading-none">
-                        Gallery
-                    </h2>
-                    <div className="h-0.5 md:h-1 w-12 md:w-20 bg-white/20 mx-auto mt-4 md:mt-6 mb-4 md:mb-6"></div>
-                    <p className="max-w-xl mx-auto text-secondary text-xs md:text-sm uppercase tracking-widest px-4">
-                        Exclusive photos & videos from the party.
-                    </p>
+                <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <p className="text-[10px] uppercase tracking-[0.36em] text-white/40">Visuals</p>
+                        <h2 className="mt-2 text-4xl font-heading font-bold uppercase tracking-tight text-white md:text-6xl">
+                            Gallery
+                        </h2>
+                        <p className="mt-3 max-w-xl text-xs uppercase tracking-[0.2em] text-secondary/80">
+                            Highlight selekcija nastupa. Celu galeriju otvaras iz jednog mesta.
+                        </p>
+                    </div>
+                    {isPreviewMode && (
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setIsCatalogOpen(true)}
+                            className="w-full md:w-auto"
+                        >
+                            Otvori celu galeriju
+                        </Button>
+                    )}
                 </div>
 
-                <Swiper
-                    modules={[Pagination]}
-                    spaceBetween={24}
-                    pagination={{ clickable: true }}
-                    breakpoints={{
-                        0: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 2 },
-                    }}
-                    className="mt-12 gallery-swiper"
-                >
-                    {categories.map((category) => (
-                        <SwiperSlide key={category.id}>
-                            <CategoryCard
-                                category={category}
-                                onClick={() => openCategory(category)}
-                            />
-                        </SwiperSlide>
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {visibleCategories.map((category) => (
+                        <CategoryCard
+                            key={category.id}
+                            category={category}
+                            onClick={() => openCategory(category)}
+                        />
                     ))}
-                </Swiper>
+                </div>
             </Container>
+
+            <GalleryCatalogModal
+                isOpen={isCatalogOpen}
+                onClose={() => setIsCatalogOpen(false)}
+                categories={categories}
+                onSelectCategory={handleSelectFromCatalog}
+            />
 
             {activeCategory && activeImageIndex == null && (
                 <CategoryModal
@@ -146,7 +162,7 @@ export default function Gallery() {
                 <Lightbox
                     items={itemsForActiveCategory}
                     activeIndex={activeImageIndex}
-                    onClose={closeImage}
+                    onClose={() => setActiveImageIndex(null)}
                     onPrev={handlePrevImage}
                     onNext={handleNextImage}
                 />

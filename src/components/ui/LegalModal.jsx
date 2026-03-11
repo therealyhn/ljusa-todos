@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useEscapeKey from '../../hooks/useEscapeKey';
 import useScrollLock from '../../hooks/useScrollLock';
 import "animate.css";

@@ -8,6 +8,11 @@ const formatTime = (time) => {
     return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 };
 
+const spectrumBars = [
+    32, 46, 58, 72, 64, 76, 52, 68, 84, 60, 74, 54,
+    70, 82, 62, 78, 56, 66, 80, 48, 72, 60, 76, 52,
+];
+
 export default function MashupPlayer({ track, onNext, onPrev }) {
     const audioRef = useRef(null);
     const volumeRef = useRef(null);
@@ -28,16 +33,12 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
             setCurrentTime(audio.currentTime);
         };
 
-        const setAudioDuration = () => setDuration(audio.duration || 0);
+        const setAudioDuration = () => {
+            setDuration(audio.duration || 0);
+            setCurrentTime(audio.currentTime || 0);
+            setProgress(0);
+        };
         const handleEnded = () => onNext?.();
-
-        // Sync volume
-        audio.volume = volume;
-
-        // Reset state on track change
-        setIsPlaying(false);
-        setProgress(0);
-        setCurrentTime(0);
 
         audio.addEventListener('timeupdate', updateProgress);
         audio.addEventListener('loadedmetadata', setAudioDuration);
@@ -89,13 +90,6 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
         audio.currentTime = newTime;
     };
 
-    const handleVolumeChange = (e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const newVolume = Math.min(Math.max(clickX / rect.width, 0), 1);
-        setVolume(newVolume);
-    };
-
     const handleSeekPointer = (e) => {
         const audio = audioRef.current;
         if (!audio || !duration) return;
@@ -121,7 +115,7 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
     }
 
     return (
-        <div className="relative group/player select-none w-full max-w-[420px] mx-auto md:max-w-none">
+        <div className="relative group/player mx-auto w-full max-w-full select-none overflow-x-hidden md:max-w-none">
             {/* Main Controller Frame */}
             <div className="bg-[#050505] border-[1.5px] border-white/10 p-1 lg:p-1.5 overflow-hidden shadow-2xl">
 
@@ -188,12 +182,12 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                     {/* Center Section: Animated VU / Spectrum */}
                     <div className="mb-12 flex justify-between items-end h-16 border-b border-white/10 pb-6 relative z-10">
                         <div className="flex-1 flex items-end gap-1.5 h-full">
-                            {[...Array(24)].map((_, i) => (
+                            {spectrumBars.map((barHeight, i) => (
                                 <div
                                     key={i}
                                     className={`flex-1 bg-white/5 relative overflow-hidden transition-all duration-500`}
                                     style={{
-                                        height: `${isPlaying ? 20 + Math.random() * 80 : 10}%`,
+                                        height: `${isPlaying ? barHeight : 10}%`,
                                         opacity: isPlaying ? 0.3 + (i / 24) * 0.4 : 0.1,
                                     }}
                                 >

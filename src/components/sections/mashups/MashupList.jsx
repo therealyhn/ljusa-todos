@@ -1,8 +1,4 @@
-import { useState } from 'react';
-
 export default function MashupList({ tracks, currentIndex, onSelect }) {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
-
     if (!tracks?.length) {
         return (
             <div className="text-secondary/50 text-center py-20 uppercase tracking-widest text-xs border-y border-white/10">
@@ -12,11 +8,8 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
     }
 
     return (
-        <div
-            className="w-full flex flex-col min-h-0"
-            onMouseLeave={() => setHoveredIndex(null)}
-        >
-            <div className="hidden md:flex pb-4 mb-4 text-[10px] uppercase tracking-widest text-secondary/30 font-medium px-4">
+        <div className="w-full flex flex-col min-h-0">
+            <div className="hidden md:flex pb-2 my-2text-[10px] uppercase tracking-widest text-secondary/30 font-medium px-4">
                 <span className="w-12">No.</span>
                 <span className="flex-1">Title</span>
             </div>
@@ -27,17 +20,13 @@ export default function MashupList({ tracks, currentIndex, onSelect }) {
             >
                 {tracks.map((track, index) => {
                     const isActive = index === currentIndex;
-                    // Focus logic: if something is hovered, dim others. If nothing hovered, all normal.
-                    const isDimmed = hoveredIndex !== null && hoveredIndex !== index;
 
                     return (
                         <div
                             key={track.id}
                             className={`group relative flex items-center py-6 px-4 border-b border-white/10 transition-all duration-300 cursor-pointer
-                                ${isDimmed ? 'opacity-40' : 'opacity-100'}
                                 ${isActive ? 'bg-white/[0.03]' : 'hover:bg-white/[0.02]'}
                             `}
-                            onMouseEnter={() => setHoveredIndex(index)}
                             onClick={() => onSelect(index)}
                         >
                             {/* Active Indicator Line */}

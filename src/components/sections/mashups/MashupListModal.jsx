@@ -3,6 +3,7 @@ import useScrollLock from '../../../hooks/useScrollLock';
 
 export default function MashupListModal({ isOpen, onClose, tracks, currentIndex, onSelect }) {
     useScrollLock(isOpen);
+    const sessionId = 'XTY-ARCHIVE';
 
     if (!isOpen) return null;
 
@@ -61,7 +62,7 @@ export default function MashupListModal({ isOpen, onClose, tracks, currentIndex,
 
                 {/* Footer Metadata */}
                 <div className="px-6 py-4 flex justify-between items-center border-t border-white/5 bg-[#080808]/50 relative z-10">
-                    <span className="text-[7px] font-mono tracking-[0.3em] text-white/20 uppercase">Session_ID: {Math.random().toString(36).substring(7).toUpperCase()}</span>
+                    <span className="text-[7px] font-mono tracking-[0.3em] text-white/20 uppercase">Session_ID: {sessionId}</span>
                     <span className="text-[7px] font-mono tracking-[0.3em] text-white/20 uppercase">Link_Status: Encrypted</span>
                 </div>
             </div>

@@ -1,142 +1,97 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import Container from '../../ui/Container';
 import Button from '../../ui/Button';
 import BookingModal from './BookingModal';
 
-export default function Booking() {
-    // Static options as requested
-    const bookingOptions = [
-        {
-            _id: 'Klub/Kafic',
-            title: 'Klub / Kafic',
-            description: 'Intenzivna energija i ritmovi dizajnirani za vrhunac plesnog podijuma.',
-            duration: '3 - 6 Sati',
-            priceRange: 'Cena na upit'
-        },
-        {
-            _id: 'festival',
-            title: 'Festival',
-            description: 'Nastup sa energicnim setom i hitovima za veliku publiku.',
-            duration: '1 - 4 Sati',
-            priceRange: 'Cena na upit'
-        }
-    ];
+const bookingOptions = [
+    {
+        _id: 'club-cafe',
+        title: 'Klub / Kafic',
+        description: 'Intenzivna energija i set prilagodjen vrhuncu plesnog podijuma.',
+        duration: '3 - 6 sati',
+        priceRange: 'Cena na upit',
+    },
+    {
+        _id: 'festival',
+        title: 'Festival',
+        description: 'Nastup sa energicnim setom i hitovima za veliku publiku.',
+        duration: '1 - 4 sata',
+        priceRange: 'Cena na upit',
+    },
+];
 
+export default function Booking() {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-    const [hoveredOption, setHoveredOption] = useState(null);
 
     const openModal = (option) => {
         setSelectedOption(option);
         setIsOpen(true);
     };
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-
     return (
-        <section id="booking" className="min-h-screen/2 bg-background py-32 relative overflow-hidden">
-            <Container className="relative z-10">
-                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
-                    {/* Sticky Sidebar / Title Area */}
-                    <div className="lg:w-1/3 lg:sticky lg:top-12 self-start space-y-8">
-                        <div>
-                            <p className="text-secondary/60 text-[10px] uppercase tracking-[0.4em] mb-4 pl-1">Booking</p>
-                            <h2 className="text-6xl md:text-8xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.9]">
-                                Select<br />Format
-                            </h2>
-                        </div>
-                        <p className="text-secondary/70 text-sm uppercase tracking-widest max-w-[300px] leading-relaxed pl-1">
-                            Klub, kafic ili festvival - Izaberi event i bukiraj nas.
-                        </p>
+        <section id="booking" className="bg-background py-14 md:py-20">
+            <Container>
+                <div className="mb-8 text-center md:mb-10">
+                    <p className="text-[10px] uppercase tracking-[0.36em] text-white/40">Booking</p>
+                    <h2 className="mt-2 text-4xl font-heading font-bold uppercase tracking-tight text-white md:text-6xl">
+                        Rezervisi XTY
+                    </h2>
+                    <p className="mx-auto mt-3 max-w-2xl text-xs uppercase tracking-[0.2em] text-secondary/80">
+                        Brza prijava za klub, kafic ili festival. Izaberi format i posalji upit bez dugacke forme na stranici.
+                    </p>
+                </div>
 
-                        <div className="hidden lg:block h-px w-20 bg-white/10 mt-12 mb-8" />
+                <div className="grid gap-4 md:grid-cols-2">
+                    {bookingOptions.map((option) => (
+                        <article key={option._id} className="border border-white/10 bg-white/[0.02] p-5 md:p-6">
+                            <h3 className="text-2xl font-heading font-semibold uppercase tracking-tight text-white">
+                                {option.title}
+                            </h3>
+                            <p className="mt-2 text-sm uppercase tracking-[0.16em] text-secondary/85">
+                                {option.description}
+                            </p>
 
-                        <div className="hidden lg:block text-xs uppercase tracking-[0.3em] text-secondary/50 font-medium pl-1">
-                            Balkanski Mashupovi - Najbolji provod
-                        </div>
-                    </div>
+                            <div className="mt-6 grid gap-2 text-[11px] uppercase tracking-[0.2em] text-white/70">
+                                <p>
+                                    <span className="text-white/45">Trajanje:</span> {option.duration}
+                                </p>
+                                <p>
+                                    <span className="text-white/45">Cena:</span> {option.priceRange}
+                                </p>
+                            </div>
 
-                    {/* Right Side: List Layout */}
-                    <div className="lg:w-2/3 flex flex-col pt-4">
-                        <div
-                            className="group/list border-t border-white/10"
-                            onMouseLeave={() => setHoveredOption(null)}
-                        >
-                            {bookingOptions.map((option) => (
-                                <div
-                                    key={option._id}
-                                    className={`group/item relative border-b border-white/10 transition-all duration-500 ease-in-out px-4 lg:px-12
-                                    ${hoveredOption && hoveredOption !== option._id ? 'md:opacity-30 md:blur-[2px]' : 'opacity-100'}
-                                    ${hoveredOption === option._id ? 'bg-white/[0.03]' : ''}
-                                `}
-                                    onMouseEnter={() => setHoveredOption(option._id)}
-                                >
-                                    <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-white transform scale-y-0 group-hover/item:scale-y-100 transition-transform duration-500 origin-top hidden md:block" />
+                            <Button
+                                type="button"
+                                variant="primary"
+                                size="md"
+                                className="mt-6 w-full"
+                                onClick={() => openModal(option)}
+                            >
+                                Book this format
+                            </Button>
+                        </article>
+                    ))}
+                </div>
 
-                                    <div className="relative py-8 md:py-0 md:h-[240px] grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_auto] gap-6 md:gap-0 items-center">
-                                        {/* Title & Description */}
-                                        <div className="flex flex-col justify-center h-full pr-6 transition-all duration-500">
-                                            <div className="transform transition-transform duration-500 will-change-transform md:group-hover/item:-translate-y-4">
-                                                <h3 className="text-3xl md:text-5xl font-heading font-bold text-white uppercase tracking-tighter md:group-hover/item:text-shadow-glow transition-all duration-300">
-                                                    {option.title}
-                                                </h3>
-                                                <div className={`overflow-hidden transition-all duration-500 ease-out origin-top 
-                                                    max-h-24 opacity-100 mt-3 md:mt-0 
-                                                    ${hoveredOption === option._id ? 'md:max-h-24 md:opacity-100 md:mt-4' : 'md:max-h-0 md:opacity-0 md:mt-0'}
-                                                `}>
-                                                    <p className="text-secondary text-xs uppercase tracking-wider max-w-[300px] leading-relaxed font-medium">
-                                                        {option.description}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Duration */}
-                                        <div className="flex flex-col md:items-start md:pl-4 border-l border-white/0 md:border-white/5 md:group-hover/item:border-white/10 transition-colors duration-500 h-full justify-center">
-                                            <span className="block md:hidden text-[10px] uppercase tracking-widest text-secondary/30 mb-1 font-bold">Duration</span>
-                                            <span className="text-white/80 group-hover/item:text-white text-sm uppercase tracking-[0.15em] font-medium tabular-nums transition-colors duration-300">
-                                                {option.duration}
-                                            </span>
-                                        </div>
-
-                                        {/* Price */}
-                                        <div className="flex flex-col md:items-start md:pl-8 border-l border-white/0 md:border-white/5 md:group-hover/item:border-white/10 transition-colors duration-500 h-full justify-center">
-                                            <span className="block md:hidden text-[10px] uppercase tracking-widest text-secondary/30 mb-1 font-bold">Starting At</span>
-                                            <span className="text-white/80 group-hover/item:text-white text-sm uppercase tracking-[0.15em] font-medium tabular-nums transition-colors duration-300">
-                                                {option.priceRange}
-                                            </span>
-                                        </div>
-
-                                        {/* Action */}
-                                        <div className="mt-2 md:mt-0 md:pl-8 flex justify-start md:justify-end">
-                                            <button
-                                                onClick={() => openModal(option)}
-                                                className="group/btn relative overflow-hidden bg-white/0 hover:bg-white text-white hover:text-black border border-white/20 hover:border-white px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-black transition-all duration-500 w-full md:w-auto"
-                                            >
-                                                <span className="relative z-10 flex items-center justify-center gap-2">
-                                                    Book
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3 -rotate-45 group-hover/btn:rotate-0 transition-transform duration-300">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                                                    </svg>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                <div className="mt-6 mx-auto flex w-full max-w-[700px] flex-col items-center justify-center gap-4 border border-white/10 bg-black px-5 py-4 md:flex-row md:justify-center">
+                    <p className="text-center text-xs uppercase tracking-[0.2em] text-white/70">
+                        Direktan kontakt: booking@xty-music.com
+                    </p>
+                    <a
+                        href="mailto:booking@xty-music.com"
+                        className="border border-white/20 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-white transition hover:border-white/40 hover:bg-white/5"
+                    >
+                        Posalji email
+                    </a>
                 </div>
             </Container>
 
             <BookingModal
                 isOpen={isOpen}
                 selectedOption={selectedOption}
-                onClose={closeModal}
+                onClose={() => setIsOpen(false)}
             />
         </section>
     );
 }
-

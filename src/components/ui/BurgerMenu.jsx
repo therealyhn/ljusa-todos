@@ -1,121 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const BurgerMenu = () => {
+const navLinks = [
+    { name: 'Mashups', href: '#mashups' },
+    { name: 'Mixes', href: '#mixes' },
+    { name: 'Gallery', href: '#gallery' },
+    { name: 'Booking', href: '#booking' },
+    {
+        name: 'Svi za pultom',
+        href: 'https://svizapultom.xty-music.com',
+        external: true,
+    },
+];
+
+export default function BurgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
-    const [shouldRender, setShouldRender] = useState(false);
 
-    const toggleMenu = () => {
-        if (isOpen) {
-            setIsOpen(false);
-        } else {
-            setShouldRender(true);
-            setIsOpen(true);
-        }
-    };
-
-    const handleAnimationEnd = () => {
-        if (!isOpen) setShouldRender(false);
-    };
-
-    const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'About', href: '#about' },
-        { name: 'Mashups', href: '#mashups' },
-        { name: 'Mixes', href: '#mixes' },
-        { name: 'Gallery', href: '#gallery' },
-        { name: 'Booking', href: '#booking' },
-    ];
+    const toggleMenu = () => setIsOpen((prev) => !prev);
 
     return (
         <div className="md:hidden">
             <button
+                type="button"
                 onClick={toggleMenu}
-                className={`text-white focus:outline-none p-2 transition-all duration-300 
-                    ${isOpen ? 'fixed top-5 right-5 z-[10000]' : 'relative z-[70]'}`}
-                aria-label="Toggle menu"
+                className={`relative z-[10000] p-2 text-white transition-colors hover:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/40 ${isOpen ? 'fixed right-5 top-5' : ''
+                    }`}
+                aria-expanded={isOpen}
+                aria-label="Toggle navigation menu"
             >
                 {isOpen ? (
-                    <svg className="w-8 h-8 animate__animated animate__rotateIn" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 ) : (
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 )}
             </button>
 
-            {shouldRender && (
-                <div
-                    onAnimationEnd={handleAnimationEnd}
-                    className={`fixed inset-0 z-[9999] bg-black flex flex-col px-8 pt-20 pb-2 
-                        h-[100vh] overflow-y-auto animate__animated ${isOpen ? 'animate__fadeInDown' : 'animate__fadeOutUp animate__fast'}`}
-                >
-                    <nav className="flex flex-col space-y-5">
-                        {navLinks.map((link, i) => (
+            {isOpen && (
+                <div className="fixed inset-0 z-[9999] flex h-[100vh] flex-col overflow-y-auto bg-black px-8 pb-8 pt-24">
+                    <nav className="flex flex-col gap-5">
+                        {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
                                 onClick={toggleMenu}
-                                style={{ animationDelay: isOpen ? `${i * 0.1}s` : '0s' }}
-                                className={`relative inline-flex w-fit text-4xl font-heading font-bold text-white 
-                                    hover:text-secondary transition-colors uppercase tracking-tight 
-                                    animate__animated after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-px 
-                                    after:w-0 after:bg-white/70 after:transition-all after:duration-300 after:ease-out 
-                                    hover:after:w-full ${isOpen ? 'animate__fadeInLeft' : 'animate__fadeOutLeft animate__faster'}`}
+                                target={link.external ? '_blank' : undefined}
+                                rel={link.external ? 'noopener noreferrer' : undefined}
+                                className="w-fit text-4xl font-heading font-bold uppercase tracking-tight text-white transition-colors hover:text-white/60"
                             >
                                 {link.name}
                             </a>
                         ))}
                     </nav>
 
-                    <div className="mt-10 h-px w-16 bg-white/10"></div>
+                    <div className="mt-10 h-px w-20 bg-white/10" />
 
-                    <div className="mt-8 space-y-8">
-                        {[
-                            {
-                                name: 'XTY',
-                                links: [
-                                    { label: 'Instagram', href: 'https://www.instagram.com/xty.music/' },
-                                    { label: 'YouTube', href: 'https://www.youtube.com/@xty-music' },
-                                    { label: 'Email', href: 'mailto:booking@xty-music.com' },
-                                ],
-                            },
-                        ].map((group, i) => (
-                            <div
-                                key={group.name}
-                                className={`animate__animated ${isOpen ? 'animate__fadeInUp' : 'animate__fadeOutDown animate__faster'}`}
-                                style={{ animationDelay: isOpen ? `${0.6 + (i * 0.1)}s` : '0s' }}
-                            >
-                                <p className="text-lg uppercase tracking-widest text-secondary/70 mb-3">{group.name}</p>
-                                <div className="flex flex-col gap-3">
-                                    {group.links.map((link) => (
-                                        <a
-                                            key={link.label}
-                                            href={link.href}
-                                            target={link.href.startsWith('http') ? '_blank' : undefined}
-                                            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                                            className="text-sm text-white/80 hover:text-white transition-colors"
-                                        >
-                                            {link.label}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div
-                        className={`mt-auto pt-8 text-white/20 text-xs uppercase tracking-widest 
-                            animate__animated ${isOpen ? 'animate__fadeIn' : 'animate__fadeOut animate__faster'}`}
-                        style={{ animationDelay: isOpen ? '0.9s' : '0s' }}
-                    >
-                        LTX 2025
+                    <div className="mt-8 space-y-3 text-xs uppercase tracking-[0.24em] text-white/50">
+                        <a href="https://www.instagram.com/xty.music/" target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                            Instagram
+                        </a>
+                        <a href="https://www.youtube.com/@xty-music" target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                            YouTube
+                        </a>
+                        <a href="https://www.tiktok.com/@xtymusic" target="_blank" rel="noopener noreferrer" className="block hover:text-white">
+                            TikTok
+                        </a>
+                        <a href="mailto:booking@xty-music.com" className="block hover:text-white">
+                            booking@xty-music.com
+                        </a>
                     </div>
                 </div>
             )}
         </div>
     );
-};
-
-export default BurgerMenu;
+}

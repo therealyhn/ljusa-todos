@@ -3,11 +3,11 @@ export default function CategoryCard({ category, onClick, className = "" }) {
         category.image || "https://placehold.co/900x600?text=Category";
 
     return (
-        <li className={className}>
+        <div className={className}>
             <button
                 type="button"
                 onClick={onClick}
-                className="group relative block w-full h-[500px] overflow-hidden bg-black text-left"
+                className="group relative block h-[320px] w-full overflow-hidden bg-black text-left md:h-[380px]"
             >
                 {/* Image Background */}
                 <img
@@ -36,6 +36,6 @@ export default function CategoryCard({ category, onClick, className = "" }) {
                     <div className="mt-6 h-px w-0 bg-white/30 transition-all duration-700 group-hover:w-full" />
                 </div>
             </button>
-        </li>
+        </div>
     );
 }

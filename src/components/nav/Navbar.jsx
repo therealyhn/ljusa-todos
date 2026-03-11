@@ -5,39 +5,40 @@ import logo from '../../assets/logo.png';
 
 const Navbar = () => {
     return (
-        <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-white/5">
+        <nav className="fixed top-0 z-50 w-full border-b border-white/10 bg-black/75 backdrop-blur-xl">
             <Container>
-                <div className="flex items-center justify-between h-20 animate__animated animate__fadeIn animate__slower">
-                    {/* Logo */}
-                    <a href="#" className="z-50 relative">
+                <div className="flex h-20 items-center justify-between">
+                    <a href="#home" className="relative z-50">
                         <img
                             src={logo}
-                            alt="Logo"
-                            className="w-auto h-12 md:h-16 object-contain"
+                            alt="XTY logo"
+                            className="h-12 w-auto object-contain md:h-16"
                             loading="eager"
                             decoding="async"
                             fetchPriority="high"
                         />
                     </a>
 
-                    {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center space-x-8 text-md uppercase font-medium text-secondary">
-                        <a href="#about" className="hover:text-primary transition-colors">About</a>
-                        <a href="#mashups" className="hover:text-primary transition-colors">Mashups</a>
-                        <a href="#mixes" className="hover:text-primary transition-colors">Mixes</a>
-                        <a href="#gallery" className="hover:text-primary transition-colors">Gallery</a>
-                        <Button variant="primary" size="md" className="hover:bg-gray-200 uppercase transition-colors">
-                            <a href="#booking">
-                                Book Now
-                            </a>
+                    <div className="hidden items-center gap-7 text-xs uppercase tracking-[0.22em] text-secondary md:flex">
+                        <a href="#mashups" className="transition-colors hover:text-white">Mashups</a>
+                        <a href="#mixes" className="transition-colors hover:text-white">Mixes</a>
+                        <a href="#gallery" className="transition-colors hover:text-white">Gallery</a>
+                        <a
+                            href="https://svizapultom.xty-music.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="transition-colors hover:text-white"
+                        >
+                            Svi za pultom
+                        </a>
+                        <Button as="a" href="#booking" variant="primary" size="sm" className="px-5 py-2.5">
+                            Book now
                         </Button>
                     </div>
-                    {/* Mobile Nav Component */}
+
                     <BurgerMenu />
                 </div>
-
             </Container>
-
         </nav>
     );
 };
