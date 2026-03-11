@@ -262,8 +262,9 @@ export default function MashupPlayer({ track, onNext, onPrev }) {
                                 <div className="absolute inset-0 bg-black scale-0 group-hover/play:scale-100 transition-transform duration-300 origin-center opacity-5" />
 
                                 {isPlaying ? (
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
-                                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="w-6 h-6" stroke="currentColor" strokeWidth="6" strokeLinecap="square" aria-hidden="true">
+                                        <path d="M5 5L19 19" />
+                                        <path d="M19 5L5 19" />
                                     </svg>
                                 ) : (
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 ml-1">
