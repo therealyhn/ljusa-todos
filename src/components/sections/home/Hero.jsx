@@ -3,6 +3,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import Container from '../../ui/Container';
 import Button from '../../ui/Button';
 import { sanityClient } from '../../../lib/sanityClient';
+import MediaKitModal from './MediaKitModal';
 
 const builder = imageUrlBuilder(sanityClient);
 
@@ -12,6 +13,7 @@ function urlFor(source) {
 
 export default function Hero() {
     const [data, setData] = useState(null);
+    const [isMediaKitOpen, setIsMediaKitOpen] = useState(false);
 
     useEffect(() => {
         sanityClient
@@ -97,6 +99,38 @@ export default function Hero() {
                                 booking@xty-music.com
                             </a>
                         </div>
+
+                        <div className="pt-2">
+                            <div className="border max-w-lg border-white/10 bg-white/[0.02] p-4 md:p-5">
+                                <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                                    <div>
+                                        <p className="text-[10px] uppercase tracking-[0.3em] text-white/45">Press / Booking</p>
+                                        <h3 className="mt-1 text-2xl font-heading font-bold uppercase tracking-tight text-white md:text-3xl">
+                                            XTY Media Kit
+                                        </h3>
+                                        <p className="mt-2 max-w-lg text-xs uppercase tracking-[0.16em] text-secondary/85">
+                                            Pregled koji sadrzi biografiju, press fotografije, tech rider i osnovne booking informacije za organizatore.
+                                        </p>
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="md"
+                                        className="w-full md:w-auto"
+                                        onClick={() => setIsMediaKitOpen(true)}
+                                    >
+                                        Otvori Media Kit
+                                    </Button>
+                                </div>
+                                {/* 
+                                <div className="mt-4 grid gap-2 text-[10px] uppercase tracking-[0.16em] text-white/70 sm:grid-cols-2 lg:grid-cols-4">
+                                    <span className="border border-white/10 px-3 py-2">Biography</span>
+                                    <span className="border border-white/10 px-3 py-2">Press Photos</span>
+                                    <span className="border border-white/10 px-3 py-2">Tech Rider</span>
+                                    <span className="border border-white/10 px-3 py-2">Booking Snapshot</span>
+                                </div> */}
+                            </div>
+                        </div>
                     </div>
 
                     <div className="lg:col-span-5 hidden md:block">
@@ -122,6 +156,11 @@ export default function Hero() {
                     </div>
                 </div>
             </Container>
+
+            <MediaKitModal
+                isOpen={isMediaKitOpen}
+                onClose={() => setIsMediaKitOpen(false)}
+            />
         </section>
     );
 }
