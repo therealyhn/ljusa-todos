@@ -27,8 +27,6 @@ export default function Hero() {
             .catch(console.error);
     }, []);
 
-    if (!data) return null;
-
     return (
         <section id="home" className="relative overflow-hidden bg-black pb-12 pt-28 md:pb-16 md:pt-32">
             <Container className="relative z-10">
@@ -39,12 +37,16 @@ export default function Hero() {
                         </span>
 
                         <h1 className="text-5xl font-heading font-black uppercase leading-[0.84] tracking-tight text-white md:text-7xl lg:text-[96px]">
-                            <span className="block">{data.heroTitle}</span>
-                            <span className="block text-white/50">{data.heroSubtitle}</span>
+                            {data?.heroTitle
+                                ? <span className="block">{data.heroTitle}</span>
+                                : <span className="block h-[0.84em] w-3/4 animate-pulse bg-white/10" />}
+                            {data?.heroSubtitle
+                                ? <span className="block text-white/50">{data.heroSubtitle}</span>
+                                : <span className="block h-[0.84em] w-1/2 animate-pulse bg-white/10 mt-2" />}
                         </h1>
 
                         <p className="max-w-2xl border-l border-white/15 pl-4 text-sm uppercase leading-relaxed tracking-[0.18em] text-secondary/90 md:text-base">
-                            {data.heroDescription}
+                            {data?.heroDescription ?? <span className="block h-4 w-full animate-pulse bg-white/10" />}
                         </p>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -135,13 +137,15 @@ export default function Hero() {
 
                     <div className="lg:col-span-5 hidden md:block">
                         <div className="relative overflow-hidden border border-white/10 bg-white/[0.02]">
-                            {data.heroImage ? (
+                            {data?.heroImage ? (
                                 <img
                                     src={urlFor(data.heroImage).width(1000).auto('format').quality(80).url()}
                                     alt="XTY duo"
+                                    width={1000}
+                                    height={1250}
                                     className="aspect-[4/5] w-full object-cover grayscale transition duration-700 hover:grayscale-0"
                                     loading="eager"
-                                    decoding="async"
+                                    decoding="sync"
                                     fetchPriority="high"
                                 />
                             ) : (

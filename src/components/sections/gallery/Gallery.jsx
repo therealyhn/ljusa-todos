@@ -132,13 +132,18 @@ export default function Gallery({ mode = 'preview', previewCount = 3 }) {
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {visibleCategories.map((category) => (
-                        <CategoryCard
-                            key={category.id}
-                            category={category}
-                            onClick={() => openCategory(category)}
-                        />
-                    ))}
+                    {visibleCategories.length > 0
+                        ? visibleCategories.map((category) => (
+                            <CategoryCard
+                                key={category.id}
+                                category={category}
+                                onClick={() => openCategory(category)}
+                            />
+                        ))
+                        : Array.from({ length: 3 }).map((_, i) => (
+                            <div key={i} className="aspect-[4/3] w-full animate-pulse bg-white/5 border border-white/10" />
+                        ))
+                    }
                 </div>
             </Container>
 
