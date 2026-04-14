@@ -110,21 +110,20 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
                     const globalIndex = mashups.findIndex((item) => item.id === track.id);
                     if (globalIndex >= 0) setCurrentIndex(globalIndex);
                 }}
-                className={`h-full w-full border text-left transition ${
-                    isMobile
-                        ? 'px-4 py-4'
-                        : 'px-4 py-4 md:px-5 md:py-5'
-                } ${isActive
-                    ? 'border-white/30 bg-white/10 text-white'
-                    : 'border-white/10 text-white/75 hover:border-white/25 hover:text-white'
+                className={`h-full w-full border text-left transition ${isMobile
+                    ? 'px-4 py-4'
+                    : 'px-4 py-4 md:px-5 md:py-5'
+                    } ${isActive
+                        ? 'border-white/30 bg-white/10 text-white'
+                        : 'border-white/10 text-white/75 hover:border-white/25 hover:text-white'
                     }`}
             >
                 <div className="flex h-full flex-col justify-between">
                     <div className="min-w-0">
-                        <p className="text-[9px] uppercase tracking-[0.22em] text-white/45">
-                            XTY Mashup
+                        <p className="text-[12px] uppercase tracking-[0.22em] text-white">
+                            XTY WORK
                         </p>
-                        <h3 className="mt-2 text-base font-semibold uppercase leading-tight tracking-[0.04em] text-white md:text-lg">
+                        <h3 className="mt-2 text-base font-semibold uppercase leading-tight tracking-[0.04em] text-white md:text-xl">
                             {track.title}
                         </h3>
                         <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-secondary/80">
@@ -155,7 +154,7 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.36em] text-white/40">Listen</p>
                             <h2 className="mt-2 text-4xl font-heading font-bold uppercase tracking-tight text-white md:text-6xl">
-                                Mashups
+                                Mashups & Edits
                             </h2>
                             <p className="mt-3 max-w-xl text-xs uppercase tracking-[0.2em] text-secondary/80">
                                 Najjaci izbor sa brzom kontrolom i instant pristupom celoj biblioteci.

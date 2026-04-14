@@ -42,7 +42,7 @@ export default function Booking() {
                     </p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-2 max-w-[1000px] mx-auto">
                     {bookingOptions.map((option) => (
                         <article key={option._id} className="border border-white/10 bg-white/[0.02] p-5 md:p-6">
                             <h3 className="text-2xl font-heading font-semibold uppercase tracking-tight text-white">
