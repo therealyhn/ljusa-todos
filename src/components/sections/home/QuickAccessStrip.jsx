@@ -1,7 +1,7 @@
 import Container from '../../ui/Container';
 
 const quickLinks = [
-    { title: 'Mashups & Edits', href: '#mashups', external: false },
+    { title: 'Our Work', href: '#mashups', external: false },
     { title: 'Mixes', href: '#mixes', external: false },
     { title: 'Gallery', href: '#gallery', external: false },
     { title: 'Booking', href: '#booking', external: false },

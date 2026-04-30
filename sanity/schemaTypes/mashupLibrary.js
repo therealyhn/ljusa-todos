@@ -20,6 +20,20 @@ export default {
                         { name: 'title', title: 'Title', type: 'string' },
                         { name: 'artist', title: 'Artist', type: 'string' },
                         {
+                            name: 'category',
+                            title: 'Category',
+                            type: 'string',
+                            options: {
+                                list: [
+                                    { title: 'Mashup', value: 'mashup' },
+                                    { title: 'Edit', value: 'edit' },
+                                    { title: 'Remix', value: 'remix' },
+                                ],
+                                layout: 'radio',
+                            },
+                            initialValue: 'mashup',
+                        },
+                        {
                             name: 'order',
                             title: 'Order',
                             type: 'number',

@@ -39,7 +39,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden items-center gap-7 text-xs uppercase tracking-[0.22em] text-secondary md:flex">
-                        <a href="#mashups" className="transition-colors hover:text-white">Mashups & Edits</a>
+                        <a href="#mashups" className="transition-colors hover:text-white">Our Work</a>
                         <a href="#mixes" className="transition-colors hover:text-white">Mixes</a>
                         <a href="#gallery" className="transition-colors hover:text-white">Gallery</a>
                         <a

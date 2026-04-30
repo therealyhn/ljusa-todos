@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import useEscapeKey from '../../../hooks/useEscapeKey';
 import useScrollLock from '../../../hooks/useScrollLock';
-import "animate.css";
+
 
 export default function BookingModal({ isOpen, selectedOption, onClose }) {
     const [formData, setFormData] = useState({

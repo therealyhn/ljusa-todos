@@ -15,6 +15,7 @@ dist-ssr
 sanity/node_modules
 sanity/dist
 sanity/.env
+.agents
 
 # Editor directories and files
 .vscode/*

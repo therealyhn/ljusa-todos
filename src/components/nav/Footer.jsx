@@ -26,7 +26,7 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-wrap gap-3 text-[10px] uppercase tracking-[0.22em]">
-                        <a href="#mashups" className="text-white/70 transition hover:text-white">Mashups</a>
+                        <a href="#mashups" className="text-white/70 transition hover:text-white">Our Work</a>
                         <a href="#mixes" className="text-white/70 transition hover:text-white">Mixes</a>
                         <a href="#gallery" className="text-white/70 transition hover:text-white">Gallery</a>
                         <a href="#booking" className="text-white/70 transition hover:text-white">Booking</a>

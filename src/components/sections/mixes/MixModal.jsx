@@ -1,6 +1,6 @@
 import useEscapeKey from '../../../hooks/useEscapeKey';
 import useScrollLock from '../../../hooks/useScrollLock';
-import "animate.css";
+
 
 const getEmbedUrl = (url, platform) => {
     if (!url) return '';

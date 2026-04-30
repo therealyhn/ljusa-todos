@@ -1,17 +1,34 @@
+import { useMemo, useState } from 'react';
 import MashupList from './MashupList';
 import useScrollLock from '../../../hooks/useScrollLock';
 
+const FILTERS = [
+    { label: 'All', value: null },
+    { label: 'Mashup', value: 'mashup' },
+    { label: 'Edit', value: 'edit' },
+    { label: 'Remix', value: 'remix' },
+];
+
 export default function MashupListModal({ isOpen, onClose, tracks, currentIndex, onSelect }) {
     useScrollLock(isOpen);
+    const [activeFilter, setActiveFilter] = useState(null);
     const sessionId = 'XTY-ARCHIVE';
+
+    const filteredTracks = useMemo(
+        () => activeFilter ? tracks.filter((t) => t.category === activeFilter) : tracks,
+        [tracks, activeFilter]
+    );
+
+    const filteredCurrentIndex = useMemo(() => {
+        if (!activeFilter) return currentIndex;
+        const currentTrack = tracks[currentIndex];
+        return currentTrack ? filteredTracks.findIndex((t) => t.id === currentTrack.id) : -1;
+    }, [tracks, filteredTracks, currentIndex, activeFilter]);
 
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex flex-col animate-in fade-in duration-300">
-            {/* Ambient Background Glow */}
-            {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.03] rounded-full blur-[100px] pointer-events-none" /> */}
-
             {/* Main Container */}
             <div className="flex-1 flex flex-col w-full max-w-4xl mx-auto relative overflow-hidden h-full">
 
@@ -27,7 +44,7 @@ export default function MashupListModal({ isOpen, onClose, tracks, currentIndex,
                             <p className="text-secondary/60 text-[9px] uppercase tracking-[0.4em] font-mono leading-none">Reference: XTY WORK</p>
                         </div>
                         <h3 className="text-2xl md:text-3xl font-heading font-bold text-white uppercase tracking-tighter leading-none mt-1">
-                            Mashups & Edits Archive
+                            Our Work Archive
                         </h3>
                     </div>
 
@@ -43,6 +60,24 @@ export default function MashupListModal({ isOpen, onClose, tracks, currentIndex,
                     </button>
                 </div>
 
+                {/* Filter Tabs */}
+                <div className="flex items-center border-b border-white/10 relative z-10 bg-[#080808]/50">
+                    {FILTERS.map((f) => (
+                        <button
+                            key={String(f.value)}
+                            type="button"
+                            onClick={() => setActiveFilter(f.value)}
+                            className={`flex-1 border-r border-white/10 px-4 py-3 text-[10px] uppercase tracking-[0.28em] transition last:border-r-0 ${
+                                activeFilter === f.value
+                                    ? 'bg-white text-black'
+                                    : 'text-white/45 hover:text-white'
+                            }`}
+                        >
+                            {f.label}
+                        </button>
+                    ))}
+                </div>
+
                 {/* Scrollable Content */}
                 <div className="flex-1 flex flex-col min-h-0 relative z-10">
                     <div className="absolute inset-y-0 left-0 w-px bg-white/5" />
@@ -50,10 +85,13 @@ export default function MashupListModal({ isOpen, onClose, tracks, currentIndex,
 
                     <div className="flex-1 overflow-hidden flex flex-col">
                         <MashupList
-                            tracks={tracks}
-                            currentIndex={currentIndex}
-                            onSelect={(index) => {
-                                onSelect(index);
+                            tracks={filteredTracks}
+                            currentIndex={filteredCurrentIndex}
+                            onSelect={(filteredIndex) => {
+                                const track = filteredTracks[filteredIndex];
+                                if (!track) return;
+                                const globalIndex = tracks.findIndex((t) => t.id === track.id);
+                                if (globalIndex >= 0) onSelect(globalIndex);
                                 onClose();
                             }}
                         />

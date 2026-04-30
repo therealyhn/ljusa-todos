@@ -5,18 +5,32 @@ import MashupPlayer from './MashupPlayer';
 import MashupListModal from './MashupListModal';
 import { sanityClient } from '../../../lib/sanityClient';
 
+const FILTERS = [
+    { label: 'All', value: null },
+    { label: 'Mashup', value: 'mashup' },
+    { label: 'Edit', value: 'edit' },
+    { label: 'Remix', value: 'remix' },
+];
+
 export default function Mashups({ mode = 'preview', previewCount = 3 }) {
     const [mashups, setMashups] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isListOpen, setIsListOpen] = useState(false);
     const [playerHeight, setPlayerHeight] = useState(0);
+    const [activeFilter, setActiveFilter] = useState(null);
     const playerWrapperRef = useRef(null);
 
     const currentTrack = mashups[currentIndex];
     const isPreviewMode = mode === 'preview';
+
+    const filteredMashups = useMemo(
+        () => activeFilter ? mashups.filter((t) => t.category === activeFilter) : mashups,
+        [mashups, activeFilter]
+    );
+
     const previewTracks = useMemo(
-        () => mashups.slice(0, previewCount),
-        [mashups, previewCount]
+        () => filteredMashups.slice(0, previewCount),
+        [filteredMashups, previewCount]
     );
 
     useEffect(() => {
@@ -28,6 +42,7 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
                     _key,
                     title,
                     artist,
+                    category,
                     order,
                     audioFile{
                         asset->{
@@ -49,6 +64,7 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
                     id: item._key,
                     title: item.title,
                     artist: item.artist || 'XTY',
+                    category: item.category || null,
                     duration: item.duration,
                     src: item.audioFile?.asset?.url || '',
                     tags: item.tags || [],
@@ -96,7 +112,7 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
         setCurrentIndex((prev) => (prev - 1 + mashups.length) % mashups.length);
     };
 
-    const listTracks = isPreviewMode ? previewTracks : mashups;
+    const listTracks = isPreviewMode ? previewTracks : filteredMashups;
 
     const renderTrackCard = (track, isActive, isMobile = false) => {
         const trackTags = Array.isArray(track.tags) && track.tags.length > 0
@@ -121,7 +137,7 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
                 <div className="flex h-full flex-col justify-between">
                     <div className="min-w-0">
                         <p className="text-[12px] uppercase tracking-[0.22em] text-white">
-                            XTY WORK
+                            {track.category || 'XTY'}
                         </p>
                         <h3 className="mt-2 text-base font-semibold uppercase leading-tight tracking-[0.04em] text-white md:text-xl">
                             {track.title}
@@ -150,11 +166,11 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
         <section id="mashups" className="overflow-x-hidden bg-black py-12 md:py-16">
             <Container>
                 <div className="mx-auto max-w-[1040px]">
-                    <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+                    <div className="mb-6 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.36em] text-white/40">Listen</p>
                             <h2 className="mt-2 text-4xl font-heading font-bold uppercase tracking-tight text-white md:text-6xl">
-                                Mashups & Edits
+                                Our Work
                             </h2>
                             <p className="mt-3 max-w-xl text-xs uppercase tracking-[0.2em] text-secondary/80">
                                 Najjaci izbor sa brzom kontrolom i instant pristupom celoj biblioteci.
@@ -169,6 +185,22 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
                         >
                             Otvori celu biblioteku
                         </Button>
+                    </div>
+
+                    <div className="mb-6 flex items-center border border-white/10">
+                        {FILTERS.map((f) => (
+                            <button
+                                key={String(f.value)}
+                                type="button"
+                                onClick={() => setActiveFilter(f.value)}
+                                className={`flex-1 border-r border-white/10 px-4 py-2.5 text-[10px] uppercase tracking-[0.28em] transition last:border-r-0 ${activeFilter === f.value
+                                        ? 'bg-white text-black'
+                                        : 'text-white/45 hover:text-white'
+                                    }`}
+                            >
+                                {f.label}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)]">
@@ -199,7 +231,7 @@ export default function Mashups({ mode = 'preview', previewCount = 3 }) {
 
                             {!listTracks.length ? (
                                 <p className="py-8 text-center text-xs uppercase tracking-[0.2em] text-secondary/60">
-                                    Nema dostupnih mashupova.
+                                    Nema dostupnih traka.
                                 </p>
                             ) : (
                                 <>

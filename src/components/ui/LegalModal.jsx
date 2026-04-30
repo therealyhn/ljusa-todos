@@ -1,6 +1,6 @@
 import useEscapeKey from '../../hooks/useEscapeKey';
 import useScrollLock from '../../hooks/useScrollLock';
-import "animate.css";
+
 
 export default function LegalModal({ isOpen, type, onClose }) {
     useEscapeKey(onClose, isOpen);

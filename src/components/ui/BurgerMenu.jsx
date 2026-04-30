@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const navLinks = [
-    { name: 'Mashups', href: '#mashups' },
+    { name: 'Our Work', href: '#mashups' },
     { name: 'Mixes', href: '#mixes' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Booking', href: '#booking' },

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useEscapeKey from "../../../hooks/useEscapeKey";
 import useScrollLock from "../../../hooks/useScrollLock";
-import "animate.css";
+
 
 export default function Lightbox({ items, activeIndex, onClose, onPrev, onNext }) {
     const shouldShow = items && items.length > 0 && activeIndex != null;
