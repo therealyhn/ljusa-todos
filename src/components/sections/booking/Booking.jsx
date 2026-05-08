@@ -38,7 +38,7 @@ export default function Booking() {
                         Rezervisi XTY
                     </h2>
                     <p className="mx-auto mt-3 max-w-2xl text-xs uppercase tracking-[0.2em] text-secondary/80">
-                        Brza prijava za klub, kafic ili festival. Izaberi format i posalji upit bez dugacke forme na stranici.
+                        Izaberi format, proveri slobodan datum u kalendaru i posalji upit bez dugacke forme na stranici.
                     </p>
                 </div>
 
@@ -74,7 +74,7 @@ export default function Booking() {
                     ))}
                 </div>
 
-                <div className="mt-6 mx-auto flex w-full max-w-[700px] flex-col items-center justify-center gap-4 border border-white/10 bg-black px-5 py-4 md:flex-row md:justify-center">
+                <div className="mt-6 mx-auto flex w-full max-w-[700px] flex-col items-center justify-center gap-4 border border-white/10 bg-[#09090B] px-5 py-4 md:flex-row md:justify-center">
                     <p className="text-center text-xs uppercase tracking-[0.2em] text-white/70">
                         Direktan kontakt: booking@xty-music.com
                     </p>

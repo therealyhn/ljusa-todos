@@ -1,0 +1,10 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(config|migrations|routes|src|storage|vendor)(/|$) - [F,L]
+</IfModule>
+
+<FilesMatch "^(composer\.(json|lock)|\.env.*)$">
+    Require all denied
+</FilesMatch>

@@ -3,16 +3,19 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-# www → non-www
+# www to non-www
 RewriteCond %{HTTP_HOST} ^www\.xty-music\.com [NC]
 RewriteRule ^(.*)$ https://xty-music.com/$1 [R=301,L]
 
-# React SPA — all routes to index.html
+# PHP booking API
+RewriteRule ^api(?:/.*)?$ backend/public/index.php [L,QSA]
+
+# React SPA
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]
 
-# Gzip kompresija
+# Gzip compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/css
@@ -31,22 +34,22 @@ RewriteRule ^ index.html [L]
 <IfModule mod_expires.c>
     ExpiresActive On
 
-    # Vite assets (hashed filenames) — cache zauvijek
+    # Vite assets with hashed filenames
     <FilesMatch "\.(js|css)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 
-    # Fontovi
+    # Fonts
     <FilesMatch "\.(woff2|woff|ttf|otf)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 
-    # Slike — 30 dana
+    # Images
     <FilesMatch "\.(webp|avif|jpg|jpeg|png|gif|ico|svg)$">
         Header set Cache-Control "public, max-age=2592000"
     </FilesMatch>
 
-    # HTML — uvijek svjez
+    # HTML
     <FilesMatch "\.html$">
         Header set Cache-Control "no-cache, no-store, must-revalidate"
         Header set Pragma "no-cache"
@@ -54,13 +57,13 @@ RewriteRule ^ index.html [L]
     </FilesMatch>
 </IfModule>
 
-# Sigurnosni headeri
+# Security headers
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
 
-    # Dozvoli Facebook/WhatsApp scraperima da preuzmu OG slike
+    # Allow social scrapers to fetch OG images
     <FilesMatch "\.(jpg|jpeg|png|gif|webp)$">
         Header unset X-Frame-Options
     </FilesMatch>

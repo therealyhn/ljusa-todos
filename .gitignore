@@ -17,6 +17,12 @@ sanity/dist
 sanity/.env
 .agents
 
+# Backend secrets and generated runtime data
+backend/config/config.php
+backend/storage/uploads/
+backend/storage/logs/
+backend/vendor/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
