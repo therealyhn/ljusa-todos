@@ -9,14 +9,20 @@ import SviZaPultomFeature from './components/sections/home/SviZaPultomFeature';
 import Booking from './components/sections/booking/Booking';
 import Footer from './components/nav/Footer';
 import InitialLoader from './components/ui/InitialLoader';
+import AdminPage from './pages/AdminPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const isAdminRoute = window.location.pathname.startsWith('/admin');
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  if (isAdminRoute) {
+    return <AdminPage />;
+  }
 
   return (
     <main className="bg-background min-h-screen text-primary selection:bg-accent-blue selection:text-white">

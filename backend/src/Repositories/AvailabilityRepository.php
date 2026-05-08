@@ -53,4 +53,42 @@ final class AvailabilityRepository extends BaseRepository
 
         return $byDate;
     }
+
+    public function upsertOverride(string $date, string $status, ?string $reason, ?string $note): array
+    {
+        $statement = $this->db->prepare(
+            'INSERT INTO availability (availability_date, status, reason, note)
+             VALUES (?, ?, ?, ?)
+             ON DUPLICATE KEY UPDATE
+                status = VALUES(status),
+                reason = VALUES(reason),
+                note = VALUES(note)'
+        );
+        $statement->execute([$date, $status, $reason, $note]);
+
+        return $this->findByDate($date) ?? [];
+    }
+
+    public function deleteOverride(string $date): bool
+    {
+        $statement = $this->db->prepare('DELETE FROM availability WHERE availability_date = ?');
+        $statement->execute([$date]);
+
+        return $statement->rowCount() > 0;
+    }
+
+    public function findByDate(string $date): ?array
+    {
+        $statement = $this->db->prepare(
+            'SELECT availability_date, status, reason, note, created_at, updated_at
+             FROM availability
+             WHERE availability_date = ?
+             LIMIT 1'
+        );
+        $statement->execute([$date]);
+
+        $availability = $statement->fetch();
+
+        return $availability ?: null;
+    }
 }

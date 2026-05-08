@@ -8,6 +8,7 @@ use DatePeriod;
 use DateTimeImmutable;
 use DateTimeZone;
 use Repositories\AvailabilityRepository;
+use Validators\AvailabilityOverrideValidator;
 
 final class AvailabilityService
 {
@@ -82,6 +83,61 @@ final class AvailabilityService
                 static fn (array $day): string => $day['date'],
                 array_filter($days, static fn (array $day): bool => $day['status'] === 'blocked')
             )),
+        ];
+    }
+
+    public function updateOverride(string $date, array $payload): array
+    {
+        $dateError = AvailabilityOverrideValidator::validateDate($date);
+        $payloadErrors = AvailabilityOverrideValidator::validatePayload($payload);
+
+        if ($dateError !== null || $payloadErrors !== []) {
+            return [
+                'ok' => false,
+                'status' => 422,
+                'error' => 'Validation failed',
+                'details' => array_filter([
+                    'date' => $dateError,
+                    ...$payloadErrors,
+                ]),
+            ];
+        }
+
+        $data = AvailabilityOverrideValidator::normalize($payload);
+
+        return [
+            'ok' => true,
+            'status' => 200,
+            'data' => $this->repository->upsertOverride(
+                $date,
+                $data['status'],
+                $data['reason'],
+                $data['note'],
+            ),
+        ];
+    }
+
+    public function deleteOverride(string $date): array
+    {
+        $dateError = AvailabilityOverrideValidator::validateDate($date);
+
+        if ($dateError !== null) {
+            return [
+                'ok' => false,
+                'status' => 422,
+                'error' => 'Validation failed',
+                'details' => [
+                    'date' => $dateError,
+                ],
+            ];
+        }
+
+        return [
+            'ok' => true,
+            'status' => 200,
+            'data' => [
+                'deleted' => $this->repository->deleteOverride($date),
+            ],
         ];
     }
 }

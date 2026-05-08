@@ -2,7 +2,7 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule ^(config|migrations|routes|src|storage|vendor)(/|$) - [F,L]
+    RewriteRule ^(config|migrations|routes|scripts|src|storage|vendor)(/|$) - [F,L]
 </IfModule>
 
 <FilesMatch "^(composer\.(json|lock)|\.env.*)$">

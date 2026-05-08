@@ -10,6 +10,8 @@ use Core\Router;
 /** @var Router $router */
 $router->get('/api/csrf-token', [CsrfController::class, 'show']);
 $router->get('/api/availability', [AvailabilityController::class, 'index']);
+$router->patch('/api/availability/{date}', [AvailabilityController::class, 'update']);
+$router->delete('/api/availability/{date}', [AvailabilityController::class, 'delete']);
 $router->get('/api/bookings', [BookingController::class, 'index']);
 $router->post('/api/bookings', [BookingController::class, 'store']);
 $router->patch('/api/bookings/{id}', [BookingController::class, 'update']);

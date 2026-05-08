@@ -22,6 +22,11 @@ final class Router
         $this->add('PATCH', $path, $handler);
     }
 
+    public function delete(string $path, callable|array $handler): void
+    {
+        $this->add('DELETE', $path, $handler);
+    }
+
     public function dispatch(string $method, string $path): void
     {
         foreach ($this->routes[$method] ?? [] as $route => $handler) {
