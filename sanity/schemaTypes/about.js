@@ -1,40 +1,35 @@
 export default {
     name: 'about',
-    title: 'About Section',
+    title: 'XTY Duo / About Section',
     type: 'document',
     fields: [
         {
             name: 'heading',
-            title: 'Heading',
+            title: 'Main title',
             type: 'string',
-            description: 'e.g. THE ENERGY',
+            description: 'Used as the large Duo title in xty-v2. Example: XTY',
         },
         {
             name: 'subheading',
-            title: 'Subheading',
+            title: 'Eyebrow / duo label',
             type: 'string',
-            description: 'e.g. THE PASSION.',
+            description: 'Used above the title and over the image. Example: YHN x TODOS',
         },
         {
             name: 'description',
-            title: 'Description',
+            title: 'Duo description',
             type: 'text',
+            rows: 5,
         },
         {
             name: 'imageFront',
-            title: 'Front Image',
-            type: 'image',
-            options: { hotspot: true },
-        },
-        {
-            name: 'imageBack',
-            title: 'Back Image (Reveal)',
+            title: 'Main duo image',
             type: 'image',
             options: { hotspot: true },
         },
         {
             name: 'stats',
-            title: 'Statistics',
+            title: 'Duo statistics',
             type: 'array',
             of: [{
                 type: 'object',
@@ -45,4 +40,11 @@ export default {
             }]
         }
     ],
+    preview: {
+        select: {
+            title: 'heading',
+            subtitle: 'subheading',
+            media: 'imageFront',
+        },
+    },
 }
