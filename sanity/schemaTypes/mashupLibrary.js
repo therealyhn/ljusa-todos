@@ -47,6 +47,19 @@ export default {
                             options: { accept: 'audio/*' },
                         },
                         {
+                            name: 'soundcloudUrl',
+                            title: 'SoundCloud Link',
+                            type: 'url',
+                            description: 'Link koji se koristi za Download dugme na frontendu.',
+                            validation: (Rule) =>
+                                Rule.uri({ scheme: ['http', 'https'], allowRelative: false })
+                                    .custom((url) =>
+                                        !url || /^https?:\/\/([a-z0-9-]+\.)?soundcloud\.com\//i.test(url)
+                                            ? true
+                                            : 'Unesi SoundCloud link sa soundcloud.com'
+                                    ),
+                        },
+                        {
                             name: 'tags',
                             title: 'Tags',
                             type: 'array',
